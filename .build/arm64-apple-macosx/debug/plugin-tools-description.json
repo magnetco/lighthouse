@@ -1,0 +1,374 @@
+{
+  "builtTestProducts" : [
+
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.Lighthouse-arm64-apple-macosx26.0-debug.module" : {
+      "executable" : "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "fileList" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/sources",
+      "importPath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/LighthouseApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/PortScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "Lighthouse",
+      "moduleOutputPath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Modules/Lighthouse.swiftmodule",
+      "objects" : [
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx13.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "Lighthouse_main",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-I",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-L",
+        "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+        "-plugin-path",
+        "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "lighthouse"
+      ],
+      "outputFileMapPath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Modules/Lighthouse.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/gavin/Projects/lighthouse/Lighthouse/LighthouseApp.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/PortScanner.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift"
+      ],
+      "tempsPath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "Lighthouse" : [
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc",
+      "-module-name",
+      "Lighthouse",
+      "-package-name",
+      "lighthouse",
+      "-c",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/LighthouseApp.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/PortScanner.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift",
+      "-I",
+      "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx13.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "Lighthouse_main",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-I",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-L",
+      "/Library/Developer/CommandLineTools/Library/Developer/Frameworks",
+      "-plugin-path",
+      "/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "lighthouse",
+      "-driver-use-frontend-path",
+      "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "Lighthouse" : [
+
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse-entitlement.plist"
+    },
+    "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/LighthouseApp.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/PortScanner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/sources"
+    },
+    "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.product/Objects.LinkFileList"
+    },
+    "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Library/Developer/CommandLineTools/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+    }
+  }
+}

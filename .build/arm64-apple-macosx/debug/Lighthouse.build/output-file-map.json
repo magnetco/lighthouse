@@ -1,0 +1,61 @@
+{
+  "": {
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/master.swiftdeps"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/LighthouseApp.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/PortScanner.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.dia"
+  }
+}
