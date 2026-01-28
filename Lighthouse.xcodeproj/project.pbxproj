@@ -13,11 +13,27 @@
 		001000007 /* ShellExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000008; };
 		001000009 /* PortScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000010; };
 		001000011 /* ProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000012; };
+		001000023 /* ProjectDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000025; };
 		001000013 /* PortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000014; };
 		001000015 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000016; };
 		001000017 /* PortRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000018; };
 		001000019 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000020; };
 		001000021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 001000022; };
+		001000026 /* WebsiteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000027; };
+		001000028 /* PingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000029; };
+		001000030 /* WebsiteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000031; };
+		001000032 /* WebsiteMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000033; };
+		001000034 /* WebsiteRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000035; };
+		001000036 /* AddWebsiteForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000037; };
+		001000038 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000039; };
+		001000040 /* EnvironmentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000041; };
+		001000042 /* ProfileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000043; };
+		001000044 /* LogTailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000045; };
+		001000046 /* LogViewerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000047; };
+		001000048 /* DockerContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000049; };
+		001000050 /* DockerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000051; };
+		001000052 /* DockerContainerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000053; };
+		001000054 /* FrameworkIconMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000055; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,12 +44,28 @@
 		001000008 /* ShellExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellExecutor.swift; sourceTree = "<group>"; };
 		001000010 /* PortScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortScanner.swift; sourceTree = "<group>"; };
 		001000012 /* ProcessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessManager.swift; sourceTree = "<group>"; };
+		001000025 /* ProjectDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetector.swift; sourceTree = "<group>"; };
 		001000014 /* PortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortViewModel.swift; sourceTree = "<group>"; };
 		001000016 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		001000018 /* PortRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortRowView.swift; sourceTree = "<group>"; };
 		001000020 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		001000022 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		001000024 /* Lighthouse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lighthouse.entitlements; sourceTree = "<group>"; };
+		001000027 /* WebsiteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteInfo.swift; sourceTree = "<group>"; };
+		001000029 /* PingResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingResult.swift; sourceTree = "<group>"; };
+		001000031 /* WebsiteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteStorage.swift; sourceTree = "<group>"; };
+		001000033 /* WebsiteMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteMonitor.swift; sourceTree = "<group>"; };
+		001000035 /* WebsiteRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteRowView.swift; sourceTree = "<group>"; };
+		001000037 /* AddWebsiteForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWebsiteForm.swift; sourceTree = "<group>"; };
+		001000039 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		001000041 /* EnvironmentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentProfile.swift; sourceTree = "<group>"; };
+		001000043 /* ProfileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStorage.swift; sourceTree = "<group>"; };
+		001000045 /* LogTailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogTailer.swift; sourceTree = "<group>"; };
+		001000047 /* LogViewerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogViewerSheet.swift; sourceTree = "<group>"; };
+		001000049 /* DockerContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerContainer.swift; sourceTree = "<group>"; };
+		001000051 /* DockerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerManager.swift; sourceTree = "<group>"; };
+		001000053 /* DockerContainerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerContainerRow.swift; sourceTree = "<group>"; };
+		001000055 /* FrameworkIconMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkIconMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +115,10 @@
 			children = (
 				001000004 /* PortInfo.swift */,
 				001000006 /* FavoritePort.swift */,
+				001000027 /* WebsiteInfo.swift */,
+				001000029 /* PingResult.swift */,
+				001000041 /* EnvironmentProfile.swift */,
+				001000049 /* DockerContainer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -93,6 +129,10 @@
 				001000016 /* MenuBarView.swift */,
 				001000018 /* PortRowView.swift */,
 				001000020 /* SearchBarView.swift */,
+				001000035 /* WebsiteRowView.swift */,
+				001000037 /* AddWebsiteForm.swift */,
+				001000047 /* LogViewerSheet.swift */,
+				001000053 /* DockerContainerRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -110,6 +150,13 @@
 			children = (
 				001000010 /* PortScanner.swift */,
 				001000012 /* ProcessManager.swift */,
+				001000025 /* ProjectDetector.swift */,
+				001000031 /* WebsiteStorage.swift */,
+				001000033 /* WebsiteMonitor.swift */,
+				001000039 /* NotificationManager.swift */,
+				001000043 /* ProfileStorage.swift */,
+				001000045 /* LogTailer.swift */,
+				001000051 /* DockerManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -118,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				001000008 /* ShellExecutor.swift */,
+				001000055 /* FrameworkIconMapper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -197,10 +245,26 @@
 				001000007 /* ShellExecutor.swift in Sources */,
 				001000009 /* PortScanner.swift in Sources */,
 				001000011 /* ProcessManager.swift in Sources */,
+				001000023 /* ProjectDetector.swift in Sources */,
 				001000013 /* PortViewModel.swift in Sources */,
 				001000015 /* MenuBarView.swift in Sources */,
 				001000017 /* PortRowView.swift in Sources */,
 				001000019 /* SearchBarView.swift in Sources */,
+				001000026 /* WebsiteInfo.swift in Sources */,
+				001000028 /* PingResult.swift in Sources */,
+				001000030 /* WebsiteStorage.swift in Sources */,
+				001000032 /* WebsiteMonitor.swift in Sources */,
+				001000034 /* WebsiteRowView.swift in Sources */,
+				001000036 /* AddWebsiteForm.swift in Sources */,
+				001000038 /* NotificationManager.swift in Sources */,
+				001000040 /* EnvironmentProfile.swift in Sources */,
+				001000042 /* ProfileStorage.swift in Sources */,
+				001000044 /* LogTailer.swift in Sources */,
+				001000046 /* LogViewerSheet.swift in Sources */,
+				001000048 /* DockerContainer.swift in Sources */,
+				001000050 /* DockerManager.swift in Sources */,
+				001000052 /* DockerContainerRow.swift in Sources */,
+				001000054 /* FrameworkIconMapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

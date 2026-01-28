@@ -9,6 +9,7 @@ struct LighthouseApp: App {
             MenuBarView(viewModel: viewModel)
         } label: {
             Image(systemName: "light.beacon.max.fill")
+                .foregroundColor(viewModel.systemHealth.iconColor)
         }
         .menuBarExtraStyle(.window)
     }

@@ -28,7 +28,35 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/DockerContainer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/EnvironmentProfile.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PingResult.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebsiteInfo.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/DockerManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/LogTailer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/NotificationManager.swift"
         },
         {
           "kind" : "file",
@@ -40,6 +68,26 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProfileStorage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectDetector.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/FrameworkIconMapper.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift"
         },
         {
@@ -48,11 +96,27 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/AddWebsiteForm.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/DockerContainerRow.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/LogViewerSheet.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift"
         },
         {
           "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebsiteRowView.swift"
         },
         {
           "kind" : "file",
@@ -68,13 +132,29 @@
       "moduleOutputPath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Modules/Lighthouse.swiftmodule",
       "objects" : [
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainer.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/NotificationManager.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/AddWebsiteForm.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swift.o",
-        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swift.o"
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.swift.o"
       ],
       "otherArguments" : [
         "-target",
@@ -128,7 +208,35 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/NotificationManager.swift.o"
         },
         {
           "kind" : "file",
@@ -140,11 +248,43 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o"
         },
         {
           "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/AddWebsiteForm.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet.swift.o"
         },
         {
           "kind" : "file",
@@ -156,19 +296,39 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Modules/Lighthouse.swiftmodule"
         }
       ],
       "prepareForIndexing" : false,
       "sources" : [
         "/Users/gavin/Projects/lighthouse/Lighthouse/LighthouseApp.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Models/DockerContainer.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Models/EnvironmentProfile.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PingResult.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebsiteInfo.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/DockerManager.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/LogTailer.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/NotificationManager.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/PortScanner.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProfileStorage.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectDetector.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteMonitor.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/FrameworkIconMapper.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/AddWebsiteForm.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/DockerContainerRow.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/LogViewerSheet.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift",
-        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift"
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebsiteRowView.swift"
       ],
       "tempsPath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build",
       "wholeModuleOptimization" : false
@@ -186,13 +346,29 @@
       "lighthouse",
       "-c",
       "/Users/gavin/Projects/lighthouse/Lighthouse/LighthouseApp.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Models/DockerContainer.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Models/EnvironmentProfile.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PingResult.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebsiteInfo.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/DockerManager.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/LogTailer.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/NotificationManager.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/PortScanner.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProfileStorage.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectDetector.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteMonitor.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/FrameworkIconMapper.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Views/AddWebsiteForm.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Views/DockerContainerRow.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Views/LogViewerSheet.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebsiteRowView.swift",
       "-I",
       "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Modules",
       "-target",
@@ -285,7 +461,35 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/DockerContainer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/EnvironmentProfile.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PingResult.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebsiteInfo.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/DockerManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/LogTailer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/NotificationManager.swift"
         },
         {
           "kind" : "file",
@@ -297,6 +501,26 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProfileStorage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectDetector.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteMonitor.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/FrameworkIconMapper.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift"
         },
         {
@@ -305,11 +529,27 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/AddWebsiteForm.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/DockerContainerRow.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/LogViewerSheet.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift"
         },
         {
           "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebsiteRowView.swift"
         }
       ],
       "outputFilePath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/sources"
@@ -323,11 +563,51 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/AddWebsiteForm.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swift.o"
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/NotificationManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult.swift.o"
         },
         {
           "kind" : "file",
@@ -351,7 +631,31 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.swift.o"
         }
       ],
       "outputFilePath" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.product/Objects.LinkFileList"

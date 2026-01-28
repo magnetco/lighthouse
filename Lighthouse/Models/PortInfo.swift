@@ -7,6 +7,9 @@ struct PortInfo: Identifiable, Hashable {
     let processName: String
     let user: String
     var workingDirectory: String?
+    var commandLine: String?
+    var projectName: String?
+    var detectedFramework: String?
 
     /// Is this a web development server?
     var isDevServer: Bool {
@@ -50,5 +53,39 @@ struct PortInfo: Identifiable, Hashable {
     /// Port as string without formatting
     var portString: String {
         return String(port)
+    }
+    
+    /// Intelligent display name with priority:
+    /// 1. Project name from metadata (e.g., "gorilla-assets")
+    /// 2. Folder name (e.g., "my-project")
+    /// 3. Detected framework/tool (e.g., "Next.js Dev Server")
+    /// 4. Process name (last resort)
+    var displayName: String {
+        // Priority 1: Project name from package.json, etc.
+        if let project = projectName, !project.isEmpty {
+            return project
+        }
+        
+        // Priority 2: Folder name
+        if let folder = folderName {
+            return folder
+        }
+        
+        // Priority 3: Framework/tool name
+        if let framework = detectedFramework {
+            return framework
+        }
+        
+        // Priority 4: Process name
+        return processName
+    }
+    
+    /// Secondary info line (framework/app type shown inline)
+    var secondaryInfo: String? {
+        // Show framework as secondary if we have a project/folder name
+        if (projectName != nil || folderName != nil), let framework = detectedFramework {
+            return framework
+        }
+        return nil
     }
 }

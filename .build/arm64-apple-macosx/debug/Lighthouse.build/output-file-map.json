@@ -9,12 +9,61 @@
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.dia"
   },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Models/DockerContainer.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainer.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainer.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainer~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainer.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainer.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Models/EnvironmentProfile.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PingResult.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult.dia"
+  },
   "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift": {
     "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.d",
     "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swift.o",
     "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo~partial.swiftmodule",
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebsiteInfo.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/DockerManager.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/LogTailer.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/NotificationManager.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/NotificationManager.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/NotificationManager.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/NotificationManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/NotificationManager.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/NotificationManager.dia"
   },
   "/Users/gavin/Projects/lighthouse/Lighthouse/Services/PortScanner.swift": {
     "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortScanner.d",
@@ -30,6 +79,41 @@
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.dia"
   },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProfileStorage.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectDetector.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteMonitor.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/FrameworkIconMapper.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.dia"
+  },
   "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift": {
     "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.d",
     "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o",
@@ -44,6 +128,27 @@
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.dia"
   },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Views/AddWebsiteForm.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/AddWebsiteForm.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/AddWebsiteForm.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/AddWebsiteForm~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/AddWebsiteForm.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/AddWebsiteForm.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Views/DockerContainerRow.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Views/LogViewerSheet.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet.dia"
+  },
   "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift": {
     "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.d",
     "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swift.o",
@@ -57,5 +162,12 @@
     "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView~partial.swiftmodule",
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebsiteRowView.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.dia"
   }
 }

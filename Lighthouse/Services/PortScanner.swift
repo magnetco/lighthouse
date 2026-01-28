@@ -1,6 +1,8 @@
 import Foundation
 
 class PortScanner {
+    
+    private let detector = ProjectDetector()
 
     /// Scan for all listening TCP ports
     func scanPorts() async throws -> [PortInfo] {
@@ -8,24 +10,42 @@ class PortScanner {
         let output = try await ShellExecutor.execute(command)
         var ports = parseOutput(output)
 
-        // Fetch working directories for each process
-        await withTaskGroup(of: (Int, String?).self) { group in
+        // Fetch working directories, command lines, and project info for each process
+        await withTaskGroup(of: (Int, String?, String?, String?, String?).self) { group in
             for port in ports {
                 group.addTask {
                     let cwd = await self.getWorkingDirectory(pid: port.pid)
-                    return (port.pid, cwd)
+                    let cmdLine = await self.getCommandLine(pid: port.pid)
+                    
+                    var framework: String?
+                    var projectName: String?
+                    
+                    // Detect framework from command line
+                    if let cmdLine = cmdLine {
+                        framework = self.detector.detectFramework(from: cmdLine)
+                    }
+                    
+                    // Read project name from metadata
+                    if let cwd = cwd {
+                        projectName = await self.detector.readProjectName(from: cwd)
+                    }
+                    
+                    return (port.pid, cwd, cmdLine, framework, projectName)
                 }
             }
 
-            var cwdMap: [Int: String] = [:]
-            for await (pid, cwd) in group {
-                if let cwd = cwd {
-                    cwdMap[pid] = cwd
-                }
+            var dataMap: [Int: (cwd: String?, cmdLine: String?, framework: String?, projectName: String?)] = [:]
+            for await (pid, cwd, cmdLine, framework, projectName) in group {
+                dataMap[pid] = (cwd, cmdLine, framework, projectName)
             }
 
             for i in ports.indices {
-                ports[i].workingDirectory = cwdMap[ports[i].pid]
+                if let data = dataMap[ports[i].pid] {
+                    ports[i].workingDirectory = data.cwd
+                    ports[i].commandLine = data.cmdLine
+                    ports[i].detectedFramework = data.framework
+                    ports[i].projectName = data.projectName
+                }
             }
         }
 
@@ -46,6 +66,17 @@ class PortScanner {
             }
 
             return cwd.isEmpty ? nil : cwd
+        } catch {
+            return nil
+        }
+    }
+    
+    /// Get command line for a process
+    private func getCommandLine(pid: Int) async -> String? {
+        do {
+            let output = try await ShellExecutor.execute("ps -p \(pid) -o command= 2>/dev/null")
+            let command = output.trimmingCharacters(in: .whitespacesAndNewlines)
+            return command.isEmpty ? nil : command
         } catch {
             return nil
         }
@@ -92,7 +123,10 @@ class PortScanner {
             pid: pid,
             processName: processName,
             user: user,
-            workingDirectory: nil
+            workingDirectory: nil,
+            commandLine: nil,
+            projectName: nil,
+            detectedFramework: nil
         )
     }
 
