@@ -310,4 +310,70 @@ As features are implemented, maintain the cohesive nautical metaphor:
 
 ---
 
-*Made with ❤️ for macOS developers*
+## Broadening Appeal (v2.0+)
+
+Features to expand beyond developers to DevOps, sysadmins, and general users:
+
+### Simplified Mode
+**Priority: Medium | Effort: Medium**
+
+- First-run wizard for different user types (Developer, DevOps, General)
+- Streamlined UI hiding technical details for non-developers
+- "Just tell me if my sites are up" mode
+- Contextual help and tooltips
+
+**Target Audience**: Tech-savvy business owners, beginners
+
+### Database Monitoring
+**Priority: Medium | Effort: Medium**
+
+- Detect running database servers (PostgreSQL, MySQL, MongoDB, Redis)
+- Connection status and basic health
+- Quick connection string copying
+- Integration with common database tools
+
+**Nautical Theme**: "Deep Anchorage" ⚓
+
+### SSL Certificate Monitoring
+**Priority: High | Effort: Low**
+
+- Certificate expiration warnings (30, 14, 7 days)
+- Certificate chain validation
+- Push notifications before expiration
+- Quick renewal reminders
+
+**Nautical Theme**: "Signal Integrity" 🔐
+
+### System Services Overview
+**Priority: Low | Effort: Medium**
+
+- Beyond TCP: show all network services
+- UDP services visibility
+- macOS launch daemons/agents awareness
+- Service dependency mapping
+
+**Target Audience**: Sysadmins, IT professionals
+
+### Webhook Integrations
+**Priority: Low | Effort: Medium**
+
+- Slack/Discord notifications
+- Generic webhook support
+- PagerDuty/OpsGenie integration
+- Custom HTTP callbacks
+
+**Target Audience**: DevOps, on-call engineers
+
+### Multi-Machine Support (v3.0)
+**Priority: Low | Effort: High**
+
+- Monitor services on remote machines via SSH
+- Agent-based monitoring for servers
+- Aggregate view across machines
+- Team dashboard view
+
+**Target Audience**: DevOps teams, enterprise users
+
+---
+
+*Built for developers. Ready for everyone.*

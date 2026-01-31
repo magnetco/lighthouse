@@ -1,10 +1,24 @@
-# Lighthouse 🚨
+# Lighthouse
 
-A macOS menu bar app that monitors local development servers, remote websites, and Docker containers - all from your menu bar.
+**Your Mac's service control center, right in the menu bar.**
+
+See what's running locally, monitor your websites, and manage Docker containers—all from a single, elegant menu bar app.
 
 ![macOS](https://img.shields.io/badge/macOS-13.0+-blue.svg)
 ![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Privacy](https://img.shields.io/badge/privacy-no_tracking-brightgreen.svg)
+
+## Who It's For
+
+| You Are | Lighthouse Helps You |
+|---------|---------------------|
+| **Developer** | See all your dev servers, jump to code, kill runaway processes |
+| **DevOps Engineer** | Monitor containers, check service health, manage environments |
+| **Sysadmin** | Know what's running on any port, instant process identification |
+| **QA Engineer** | Quick environment status checks before testing |
+| **Freelancer** | Manage multiple client projects with environment profiles |
+| **Curious User** | "What's using port 3000?" — answered instantly |
 
 ## Features
 
@@ -221,6 +235,24 @@ The app uses a cohesive nautical metaphor throughout:
 
 If you encounter any issues or have suggestions, please [open an issue](https://github.com/yourusername/lighthouse/issues).
 
+## Privacy
+
+Lighthouse is built with privacy as a core principle:
+
+- **No accounts** — Works entirely offline (except website monitoring)
+- **No analytics** — Zero telemetry, tracking, or data collection
+- **No cloud** — All data stored locally on your Mac
+- **Open source** — Verify our claims by reading the code
+
+See [PRIVACY.md](./PRIVACY.md) for our complete privacy policy.
+
+## Documentation
+
+- [APP_STORE.md](./APP_STORE.md) — App Store submission details
+- [CHANGELOG.md](./CHANGELOG.md) — Version history
+- [PRIVACY.md](./PRIVACY.md) — Privacy policy
+- [ROADMAP.md](./ROADMAP.md) — Feature roadmap
+
 ---
 
-Made with ❤️ for macOS developers
+**Lighthouse** — All signal, no noise.
