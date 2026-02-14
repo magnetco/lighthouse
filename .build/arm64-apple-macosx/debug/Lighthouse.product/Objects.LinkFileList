@@ -3,6 +3,7 @@
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerContainerRow.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FavoritesStorage.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LighthouseApp.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogTailer.swift.o
@@ -18,6 +19,11 @@
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShortcutManager.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookConfig.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookService.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookSettingsView.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookStorage.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.swift.o
