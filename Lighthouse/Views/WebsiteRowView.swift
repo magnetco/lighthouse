@@ -6,6 +6,7 @@ struct WebsiteRowView: View {
     let onCopy: () -> Void
     let onRemove: () -> Void
     let onSave: (String) -> Void
+    let onToggleStar: () -> Void
     
     @State private var isHovering = false
     @State private var showingTooltip = false
@@ -17,6 +18,16 @@ struct WebsiteRowView: View {
     
     var body: some View {
         HStack(spacing: 0) {
+            // Star button - fixed width
+            Button(action: onToggleStar) {
+                Image(systemName: website.isStarred ? "star.fill" : "star")
+                    .font(.system(size: 11))
+                    .foregroundColor(website.isStarred ? .yellow : .primary.opacity(0.3))
+            }
+            .buttonStyle(.plain)
+            .frame(width: 20)
+            .help(website.isStarred ? "Remove from favorites" : "Add to favorites")
+            
             // Framework/Globe icon - fixed width
             frameworkIcon
                 .frame(width: 24, alignment: .center)
@@ -138,6 +149,13 @@ struct WebsiteRowView: View {
         .contentShape(Rectangle())
         .onHover { isHovering = $0 }
         .contextMenu {
+            Button(action: onToggleStar) {
+                Label(
+                    website.isStarred ? "Remove from Favorites" : "Add to Favorites",
+                    systemImage: website.isStarred ? "star.slash" : "star"
+                )
+            }
+            Divider()
             Button("Open in Browser") { onOpen() }
             Button("Copy URL") { onCopy() }
             Divider()

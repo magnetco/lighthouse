@@ -8,12 +8,23 @@ struct PortRowView: View {
     let onOpenFolder: () -> Void
     let onOpenInEditor: (String) -> Void
     let onOpenInTerminal: () -> Void
+    let onToggleStar: () -> Void
 
     @State private var isHovering = false
     @State private var showingLogs = false
 
     var body: some View {
         HStack(spacing: 0) {
+            // Star button - fixed width
+            Button(action: onToggleStar) {
+                Image(systemName: port.isStarred ? "star.fill" : "star")
+                    .font(.system(size: 11))
+                    .foregroundColor(port.isStarred ? .yellow : .primary.opacity(0.3))
+            }
+            .buttonStyle(.plain)
+            .frame(width: 20)
+            .help(port.isStarred ? "Remove from favorites" : "Add to favorites")
+            
             // Framework icon - fixed width
             frameworkIcon
                 .frame(width: 24, alignment: .center)
@@ -53,12 +64,16 @@ struct PortRowView: View {
             
             // Actions - always visible, fixed width
             HStack(spacing: 6) {
+                // Show connection string button for databases
+                if isDatabasePort {
+                    IconButton(icon: "link", help: "Copy connection string", action: copyConnectionString)
+                }
                 IconButton(icon: "doc.text", help: "View logs", action: { showingLogs = true })
                 IconButton(icon: "safari", help: "Open in browser", action: onOpen)
                 IconButton(icon: "doc.on.doc", help: "Copy URL", action: onCopy)
                 IconButton(icon: "xmark.circle.fill", help: "Stop server", color: .red, action: onKill)
             }
-            .frame(width: 110, alignment: .trailing)
+            .frame(width: isDatabasePort ? 135 : 110, alignment: .trailing)
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
@@ -67,10 +82,20 @@ struct PortRowView: View {
         .onHover { isHovering = $0 }
         .help(port.commandLine ?? "")
         .contextMenu {
+            Button(action: onToggleStar) {
+                Label(
+                    port.isStarred ? "Remove from Favorites" : "Add to Favorites",
+                    systemImage: port.isStarred ? "star.slash" : "star"
+                )
+            }
+            Divider()
             Button("View Logs") { showingLogs = true }
             Divider()
             Button("Open in Browser") { onOpen() }
             Button("Copy URL") { onCopy() }
+            if isDatabasePort {
+                Button("Copy Connection String") { copyConnectionString() }
+            }
             Divider()
             if port.workingDirectory != nil {
                 Button("Reveal in Finder") { onOpenFolder() }
@@ -138,6 +163,23 @@ struct PortRowView: View {
                     .foregroundColor(.primary.opacity(0.5))
             }
         }
+    }
+    
+    private var isDatabasePort: Bool {
+        guard let framework = port.detectedFramework else { return false }
+        let dbType = FrameworkIconMapper.frameworkType(from: framework)
+        return [.postgresql, .mysql, .mongodb, .redis, .memcached, .elasticsearch].contains(dbType)
+    }
+    
+    private func copyConnectionString() {
+        guard let framework = port.detectedFramework,
+              let dbType = FrameworkIconMapper.frameworkType(from: framework),
+              let connString = FrameworkIconMapper.connectionString(for: dbType, port: port.port) else {
+            return
+        }
+        
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(connString, forType: .string)
     }
 
 }

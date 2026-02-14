@@ -9,11 +9,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **Database Detection**: Automatic recognition of PostgreSQL, MySQL, MongoDB, Redis, Memcached, and Elasticsearch
+- **Connection Strings**: Quick-copy database connection strings with dedicated button
+- **Favorites System**: Star frequently-used ports and websites to keep them at the top
+- **Global Keyboard Shortcut**: Press ⌃⌥L from anywhere to open Lighthouse
+- **Webhook Integrations**: Send notifications to Slack, Discord, or custom endpoints when websites go down
+- **Webhook Management UI**: Configure multiple webhooks with trigger conditions
+- **Rate Limiting**: Prevents webhook spam with 60-second minimum intervals
+- **Database Icons**: SF Symbol fallbacks for all database types
+
+### Changed
+- Port and website lists now sort starred items to the top
+- Enhanced PortInfo and WebsiteInfo models with favorites support
+- Improved FrameworkIconMapper with database detection logic
+- Added star buttons to port and website rows
+- Settings button in footer for webhook configuration
+
 ### Planned
 - SSL certificate expiration monitoring
-- Database connection monitoring (PostgreSQL, MySQL, Redis)
 - Custom health check endpoints with JSON validation
-- Global keyboard shortcuts
+- Customizable keyboard shortcuts UI
 - Homebrew Cask distribution
 
 ---

@@ -43,12 +43,12 @@ class NotificationManager: NSObject, ObservableObject {
     
     // MARK: - Website Notifications
     
-    func notifyWebsiteStatusChange(website: String, oldStatus: PingStatus?, newStatus: PingStatus) {
+    func notifyWebsiteStatusChange(website: String, oldStatus: PingStatus, newStatus: PingStatus) {
         // UserNotifications requires a proper app bundle
         guard Bundle.main.bundleIdentifier != nil else { return }
         
         // Only notify on significant changes
-        guard let old = oldStatus, old != newStatus else { return }
+        guard oldStatus != newStatus else { return }
         
         let content = UNMutableNotificationContent()
         content.sound = .default
@@ -56,7 +56,7 @@ class NotificationManager: NSObject, ObservableObject {
         switch newStatus {
         case .healthy:
             // Only notify recovery if it was previously in error state
-            guard old == .error else { return }
+            guard oldStatus == .error else { return }
             content.title = "🟢 \(website) is back online"
             content.body = "The website has recovered and is now healthy"
             

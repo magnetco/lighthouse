@@ -10,6 +10,7 @@ struct PortInfo: Identifiable, Hashable {
     var commandLine: String?
     var projectName: String?
     var detectedFramework: String?
+    var isStarred: Bool = false
 
     /// Is this a web development server?
     var isDevServer: Bool {
@@ -87,5 +88,11 @@ struct PortInfo: Identifiable, Hashable {
             return framework
         }
         return nil
+    }
+    
+    /// Unique identifier for favorites storage
+    var uniqueIdentifier: String {
+        // Use port + project path or port + process name
+        "\(port)-\(workingDirectory ?? processName)"
     }
 }

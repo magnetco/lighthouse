@@ -41,6 +41,13 @@ class PortViewModel: ObservableObject {
     
     // System health status
     @Published var systemHealth: SystemHealth = .unknown
+    
+    // Favorites
+    @Published var showOnlyStarredPorts = false
+    @Published var showOnlyStarredWebsites = false
+    
+    // Webhooks
+    @Published var webhooks: [WebhookConfig] = []
 
     private let scanner = PortScanner()
     private let processManager = ProcessManager()
@@ -49,6 +56,9 @@ class PortViewModel: ObservableObject {
     private let profileStorage = ProfileStorage()
     private let dockerManager = DockerManager()
     private let notificationManager = NotificationManager.shared
+    private let favoritesStorage = FavoritesStorage()
+    private let webhookStorage = WebhookStorage()
+    private let webhookService = WebhookService.shared
 
     private var refreshTimer: AnyCancellable?
     private var websiteRefreshTimer: AnyCancellable?
@@ -73,8 +83,36 @@ class PortViewModel: ObservableObject {
                 (port.folderName?.lowercased().contains(query) ?? false)
             }
         }
+        
+        // Filter by starred if enabled
+        if showOnlyStarredPorts {
+            result = result.filter { $0.isStarred }
+        }
 
-        return result
+        // Sort: starred items first, then by port number
+        return result.sorted { lhs, rhs in
+            if lhs.isStarred != rhs.isStarred {
+                return lhs.isStarred
+            }
+            return lhs.port < rhs.port
+        }
+    }
+    
+    // Sorted websites with favorites first
+    var sortedWebsites: [WebsiteInfo] {
+        var result = websites
+        
+        // Filter by starred if enabled
+        if showOnlyStarredWebsites {
+            result = result.filter { $0.isStarred }
+        }
+        
+        return result.sorted { lhs, rhs in
+            if lhs.isStarred != rhs.isStarred {
+                return lhs.isStarred
+            }
+            return lhs.displayName < rhs.displayName
+        }
     }
 
     // MARK: - Scanning
@@ -86,7 +124,25 @@ class PortViewModel: ObservableObject {
         let oldPIDs = Set(ports.map { $0.pid })
         
         do {
-            ports = try await scanner.scanPorts()
+            var scannedPorts = try await scanner.scanPorts()
+            
+            // Apply starred status from storage
+            for i in scannedPorts.indices {
+                scannedPorts[i].isStarred = favoritesStorage.isPortStarred(scannedPorts[i])
+                
+                // Check for database detection
+                if let dbType = FrameworkIconMapper.detectDatabase(
+                    processName: scannedPorts[i].processName,
+                    port: scannedPorts[i].port
+                ) {
+                    // If not already detected as a framework, set it as database
+                    if scannedPorts[i].detectedFramework == nil {
+                        scannedPorts[i].detectedFramework = dbType.rawValue
+                    }
+                }
+            }
+            
+            ports = scannedPorts
         } catch {
             ports = []
         }
@@ -215,6 +271,9 @@ class PortViewModel: ObservableObject {
             }
         }
         
+        // Load webhooks
+        webhooks = webhookStorage.load()
+        
         // Check Docker availability
         dockerAvailable = dockerManager.isDockerAvailable
         
@@ -245,6 +304,11 @@ class PortViewModel: ObservableObject {
                             oldStatus: old,
                             newStatus: new
                         )
+                        
+                        // Send webhooks if enabled for this website
+                        if websites[i].webhooksEnabled {
+                            sendWebhooks(for: websites[i], oldStatus: old, newStatus: new)
+                        }
                     }
                 }
                 
@@ -468,6 +532,84 @@ class PortViewModel: ObservableObject {
             systemHealth = .healthy
         } else {
             systemHealth = .unknown
+        }
+    }
+    
+    // MARK: - Favorites
+    
+    func togglePortStar(_ port: PortInfo) {
+        favoritesStorage.togglePortStar(port)
+        // Update in current ports array
+        if let index = ports.firstIndex(where: { $0.id == port.id }) {
+            ports[index].isStarred.toggle()
+        }
+    }
+    
+    func toggleWebsiteStar(_ website: WebsiteInfo) {
+        if let index = websites.firstIndex(where: { $0.id == website.id }) {
+            websites[index].isStarred.toggle()
+            saveCurrentProfile()
+        }
+    }
+    
+    // MARK: - Webhooks
+    
+    func addWebhook(_ webhook: WebhookConfig) {
+        webhooks.append(webhook)
+        try? webhookStorage.save(webhooks)
+    }
+    
+    func removeWebhook(id: UUID) {
+        webhooks.removeAll { $0.id == id }
+        try? webhookStorage.save(webhooks)
+    }
+    
+    func updateWebhook(_ webhook: WebhookConfig) {
+        if let index = webhooks.firstIndex(where: { $0.id == webhook.id }) {
+            webhooks[index] = webhook
+            try? webhookStorage.save(webhooks)
+        }
+    }
+    
+    func testWebhook(_ webhook: WebhookConfig) async -> Bool {
+        // Create a test event
+        let testWebsite = WebsiteInfo(
+            url: "https://example.com",
+            displayName: "Test Website"
+        )
+        let testEvent = WebhookEvent(website: testWebsite, isDown: false)
+        
+        do {
+            try await webhookService.send(event: testEvent, to: webhook)
+            return true
+        } catch {
+            print("Webhook test failed: \(error)")
+            return false
+        }
+    }
+    
+    private func sendWebhooks(for website: WebsiteInfo, oldStatus: PingStatus, newStatus: PingStatus) {
+        let isDown = newStatus == .error
+        let isRecovery = oldStatus == .error && newStatus == .healthy
+        let isWarning = newStatus == .warning
+        
+        let event = WebhookEvent(website: website, isDown: isDown)
+        
+        Task {
+            for webhook in webhooks where webhook.isEnabled {
+                // Check if this webhook should trigger for this event type
+                let shouldTrigger = (isDown && webhook.triggerOnDown) ||
+                                   (isRecovery && webhook.triggerOnRecovery) ||
+                                   (isWarning && webhook.triggerOnWarning)
+                
+                if shouldTrigger {
+                    do {
+                        try await webhookService.send(event: event, to: webhook)
+                    } catch {
+                        print("Failed to send webhook: \(error)")
+                    }
+                }
+            }
         }
     }
 }

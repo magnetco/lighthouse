@@ -36,6 +36,13 @@ enum FrameworkType: String, CaseIterable {
     case gunicorn = "Gunicorn"
     case puma = "Puma"
     case uvicorn = "Uvicorn"
+    // Databases
+    case postgresql = "PostgreSQL"
+    case mysql = "MySQL"
+    case mongodb = "MongoDB"
+    case redis = "Redis"
+    case memcached = "Memcached"
+    case elasticsearch = "Elasticsearch"
 }
 
 /// Maps framework names to icon identifiers
@@ -56,6 +63,69 @@ struct FrameworkIconMapper {
         
         // Fallback to generic icon
         return ("laptopcomputer", false, "laptopcomputer")
+    }
+    
+    /// Detect database type from process name and port
+    static func detectDatabase(processName: String, port: Int) -> FrameworkType? {
+        let normalized = processName.lowercased()
+        
+        // Check by process name first
+        if normalized.contains("postgres") || normalized.contains("postmaster") {
+            return .postgresql
+        }
+        if normalized.contains("mysqld") || normalized.contains("mariadbd") {
+            return .mysql
+        }
+        if normalized.contains("mongod") {
+            return .mongodb
+        }
+        if normalized.contains("redis") {
+            return .redis
+        }
+        if normalized.contains("memcached") {
+            return .memcached
+        }
+        if normalized.contains("elasticsearch") {
+            return .elasticsearch
+        }
+        
+        // Fallback to port-based detection
+        switch port {
+        case 5432:
+            return .postgresql
+        case 3306:
+            return .mysql
+        case 27017:
+            return .mongodb
+        case 6379:
+            return .redis
+        case 11211:
+            return .memcached
+        case 9200, 9300:
+            return .elasticsearch
+        default:
+            return nil
+        }
+    }
+    
+    /// Get connection string for a database
+    static func connectionString(for database: FrameworkType, port: Int, host: String = "localhost") -> String? {
+        switch database {
+        case .postgresql:
+            return "postgresql://\(host):\(port)/database"
+        case .mysql:
+            return "mysql://\(host):\(port)/database"
+        case .mongodb:
+            return "mongodb://\(host):\(port)"
+        case .redis:
+            return "redis://\(host):\(port)"
+        case .memcached:
+            return "\(host):\(port)"
+        case .elasticsearch:
+            return "http://\(host):\(port)"
+        default:
+            return nil
+        }
     }
     
     /// Get icon info for external websites
@@ -227,6 +297,26 @@ struct FrameworkIconMapper {
             return .node
         }
         
+        // Databases
+        if normalized.contains("postgres") {
+            return .postgresql
+        }
+        if normalized.contains("mysql") {
+            return .mysql
+        }
+        if normalized.contains("mongo") {
+            return .mongodb
+        }
+        if normalized.contains("redis") {
+            return .redis
+        }
+        if normalized.contains("memcached") {
+            return .memcached
+        }
+        if normalized.contains("elasticsearch") {
+            return .elasticsearch
+        }
+        
         return nil
     }
     
@@ -302,6 +392,19 @@ struct FrameworkIconMapper {
             return ("puma-icon", true, "pawprint.fill")
         case .uvicorn:
             return ("uvicorn-icon", true, "u.square.fill")
+        // Databases
+        case .postgresql:
+            return ("postgresql-icon", true, "cylinder.split.1x2")
+        case .mysql:
+            return ("mysql-icon", true, "cylinder")
+        case .mongodb:
+            return ("mongodb-icon", true, "leaf.fill")
+        case .redis:
+            return ("redis-icon", true, "square.stack.3d.up.fill")
+        case .memcached:
+            return ("memcached-icon", true, "memorychip.fill")
+        case .elasticsearch:
+            return ("elasticsearch-icon", true, "magnifyingglass.circle.fill")
         }
     }
 }

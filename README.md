@@ -25,9 +25,11 @@ See what's running locally, monitor your websites, and manage Docker containers�
 ### 🏮 In the Harbor (Local Development)
 - **Real-time Port Monitoring**: Scans and displays all listening TCP ports on your Mac
 - **Dev Server Detection**: Automatically identifies and highlights common development servers (Node.js, Python, Ruby, Go, Rust, and more)
+- **Database Detection**: Recognizes PostgreSQL, MySQL, MongoDB, Redis, Memcached, and Elasticsearch with quick-copy connection strings
 - **Framework Icons**: Visual indicators for Next.js, Vite, React, Django, Flask, and more
 - **Process Information**: Shows process name, PID, user, and working directory for each port
 - **Log Viewing**: View process logs directly from the menu bar with color-coded output
+- **Favorites**: Star frequently-used ports to keep them at the top
 - **Quick Actions**: Kill processes directly from the menu bar interface
 
 ### ⚓ Out at Sea (Remote Monitoring)
@@ -36,6 +38,8 @@ See what's running locally, monitor your websites, and manage Docker containers�
 - **Response Time Metrics**: See latency and response times for each website
 - **Ping History**: View last 5 pings with detailed tooltip information
 - **Uptime Tracking**: Monitor uptime percentage over time
+- **Favorites**: Star important websites for quick access
+- **Webhook Integrations**: Send notifications to Slack, Discord, or custom endpoints when sites go down
 
 ### 🚢 Container Ships (Docker Integration)
 - **Container Management**: View, start, stop, restart, and remove Docker containers
@@ -46,6 +50,7 @@ See what's running locally, monitor your websites, and manage Docker containers�
 ### 🚦 Smart Monitoring
 - **Menu Bar Status Indicator**: Icon color changes based on overall system health (green/orange/red)
 - **Desktop Notifications**: Get alerted when websites go down or dev servers change state
+- **Global Keyboard Shortcut**: Press ⌃⌥L from anywhere to open Lighthouse
 - **Environment Profiles**: Switch between Dev/Staging/Production monitoring configurations
 - **Auto-refresh**: Configurable refresh intervals per environment
 
@@ -79,9 +84,18 @@ open Lighthouse.xcodeproj
 ## Usage
 
 1. Launch Lighthouse
-2. Click the lighthouse icon in your menu bar
+2. Click the lighthouse icon in your menu bar (or press **⌃⌥L** from anywhere)
 3. View all active TCP ports and their details
 4. Click on any port to see options (copy port, kill process, etc.)
+5. Star your favorite ports and websites to keep them at the top
+6. Configure webhooks in settings (⚙️) to get notified in Slack/Discord
+
+### Quick Actions
+
+- **⌃⌥L** - Open Lighthouse from anywhere
+- **Click star icon** - Add to favorites
+- **Click link icon** - Copy database connection string
+- **Click settings** - Configure webhooks and preferences
 
 ### Detected Development Servers
 
@@ -94,17 +108,19 @@ Lighthouse automatically recognizes these development tools and frameworks:
 - **Java**: java, gradle, mvn
 - **Go**: go, air
 - **Rust**: cargo
+- **Databases**: PostgreSQL, MySQL, MongoDB, Redis, Memcached, Elasticsearch
 
 ## Architecture
 
 The app is built with SwiftUI and follows the MVVM pattern:
 
 - **Models**: 
-  - `PortInfo` - Local port data structure
-  - `WebsiteInfo` - Remote website data structure
+  - `PortInfo` - Local port data structure (with favorites)
+  - `WebsiteInfo` - Remote website data structure (with favorites)
   - `DockerContainer` - Docker container data structure
   - `EnvironmentProfile` - Profile configuration
   - `PingResult` - Website ping results
+  - `WebhookConfig` - Webhook configuration
 - **Services**: 
   - `PortScanner` - Scans system ports using `lsof`
   - `ProcessManager` - Manages process operations
@@ -116,16 +132,21 @@ The app is built with SwiftUI and follows the MVVM pattern:
   - `WebsiteStorage` - Website list persistence
   - `ProjectDetector` - Framework detection
   - `ShellExecutor` - Executes shell commands safely
+  - `FavoritesStorage` - Favorites persistence
+  - `WebhookService` - Webhook delivery
+  - `WebhookStorage` - Webhook configuration persistence
+  - `ShortcutManager` - Global keyboard shortcuts
 - **ViewModels**: `PortViewModel` - Manages state and business logic
 - **Views**: 
   - `MenuBarView` - Main menu bar interface
-  - `PortRowView` - Individual port row display
-  - `WebsiteRowView` - Website status display
+  - `PortRowView` - Individual port row display (with star button)
+  - `WebsiteRowView` - Website status display (with star button)
   - `DockerContainerRow` - Container row display
   - `LogViewerSheet` - Log viewer interface
   - `AddWebsiteForm` - Website addition form
+  - `WebhookSettingsView` - Webhook management interface
 - **Utilities**:
-  - `FrameworkIconMapper` - Maps frameworks to icons
+  - `FrameworkIconMapper` - Maps frameworks to icons (with database support)
 
 ## How It Works
 
@@ -214,6 +235,8 @@ Icons can be added to `Assets.xcassets` or the app falls back to SF Symbols. See
 ### Storage Locations
 - **Websites**: `~/Library/Application Support/Lighthouse/websites.json`
 - **Profiles**: `~/Library/Application Support/Lighthouse/profiles.json`
+- **Webhooks**: `~/Library/Application Support/Lighthouse/webhooks.json`
+- **Favorites**: `~/Library/Preferences/com.lighthouse.app.plist` (UserDefaults)
 
 ### Performance Characteristics
 - **Local Ports**: Refresh every 5 seconds
@@ -250,6 +273,7 @@ See [PRIVACY.md](./PRIVACY.md) for our complete privacy policy.
 
 - [APP_STORE.md](./APP_STORE.md) — App Store submission details
 - [CHANGELOG.md](./CHANGELOG.md) — Version history
+- [FEATURES.md](./FEATURES.md) — Detailed feature documentation
 - [PRIVACY.md](./PRIVACY.md) — Privacy policy
 - [ROADMAP.md](./ROADMAP.md) — Feature roadmap
 

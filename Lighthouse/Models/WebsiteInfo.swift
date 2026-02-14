@@ -10,6 +10,8 @@ struct WebsiteInfo: Identifiable, Codable, Hashable {
     var isEnabled: Bool
     var isInternal: Bool? // Optional to allow auto-detection
     var detectedFramework: String? // Framework/stack name (e.g., "Next.js", "Django")
+    var isStarred: Bool = false
+    var webhooksEnabled: Bool = true
     
     init(id: UUID = UUID(), url: String, displayName: String, addedDate: Date = Date(), isEnabled: Bool = true, isInternal: Bool? = nil, detectedFramework: String? = nil) {
         self.id = id

@@ -3,6 +3,7 @@ import SwiftUI
 struct MenuBarView: View {
     @ObservedObject var viewModel: PortViewModel
     @State private var isAddingWebsite = false
+    @State private var showingWebhookSettings = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -66,14 +67,31 @@ struct MenuBarView: View {
 
             // Footer
             HStack {
+                Button {
+                    showingWebhookSettings = true
+                } label: {
+                    Image(systemName: "gearshape")
+                        .font(.system(size: 11))
+                }
+                .buttonStyle(.plain)
+                .foregroundColor(.secondary.opacity(0.6))
+                .help("Settings")
+                
+                Spacer()
+                
+                Text("⌃⌥L")
+                    .font(.system(size: 9, design: .monospaced))
+                    .foregroundColor(.secondary.opacity(0.5))
+                    .help("Global shortcut")
+                
+                Spacer()
+                
                 Button("Quit") {
                     NSApplication.shared.terminate(nil)
                 }
                 .buttonStyle(.plain)
                 .font(.system(size: 10))
                 .foregroundColor(.secondary.opacity(0.6))
-
-                Spacer()
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 8)
@@ -90,6 +108,9 @@ struct MenuBarView: View {
         }
         .onDisappear {
             viewModel.stopAutoRefresh()
+        }
+        .sheet(isPresented: $showingWebhookSettings) {
+            WebhookSettingsView(viewModel: viewModel)
         }
     }
 
@@ -125,7 +146,8 @@ struct MenuBarView: View {
                     onKill: { Task { await viewModel.killProcess(port: port) } },
                     onOpenFolder: { viewModel.openInFinder(port: port) },
                     onOpenInEditor: { app in viewModel.openInEditor(port: port, app: app) },
-                    onOpenInTerminal: { viewModel.openInTerminal(port: port) }
+                    onOpenInTerminal: { viewModel.openInTerminal(port: port) },
+                    onToggleStar: { viewModel.togglePortStar(port) }
                 )
 
                 if port.id != viewModel.devPorts.last?.id {
@@ -264,7 +286,7 @@ struct MenuBarView: View {
     
     private var distantPortsList: some View {
         LazyVStack(spacing: 0) {
-            ForEach(viewModel.websites) { website in
+            ForEach(viewModel.sortedWebsites) { website in
                 WebsiteRowView(
                     website: website,
                     onOpen: { viewModel.openWebsite(website) },
@@ -274,10 +296,11 @@ struct MenuBarView: View {
                         var updated = website
                         updated.displayName = newName
                         viewModel.updateWebsite(updated)
-                    }
+                    },
+                    onToggleStar: { viewModel.toggleWebsiteStar(website) }
                 )
                 
-                if website.id != viewModel.websites.last?.id {
+                if website.id != viewModel.sortedWebsites.last?.id {
                     Divider()
                         .opacity(0.3)
                 }
