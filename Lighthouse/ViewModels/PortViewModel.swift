@@ -362,9 +362,21 @@ class PortViewModel: ObservableObject {
         // Load websites from active profile or legacy storage
         if let profile = activeProfile {
             websites = profile.websites
+            
+            // Migrate legacy websites to active profile if profile is empty
+            if websites.isEmpty {
+                let legacyWebsites = websiteStorage.load()
+                if !legacyWebsites.isEmpty {
+                    websites = legacyWebsites
+                    saveCurrentProfile()
+                }
+            }
         } else {
             websites = websiteStorage.load()
         }
+        
+        // Add test domain if not already present
+        addTestDomainIfNeeded()
         
         // Initialize previous statuses
         for website in websites {
@@ -385,6 +397,36 @@ class PortViewModel: ObservableObject {
         // Request notification permissions on first launch
         Task {
             _ = await notificationManager.requestAuthorization()
+        }
+    }
+    
+    /// Add test domain (magnet.co) for uptime monitoring if not already present
+    private func addTestDomainIfNeeded() {
+        let testURL = "https://magnet.co"
+        
+        // Check if magnet.co is already being monitored
+        let alreadyExists = websites.contains { website in
+            website.url.lowercased().contains("magnet.co")
+        }
+        
+        // Add test domain if not present
+        if !alreadyExists {
+            let testWebsite = WebsiteInfo(
+                url: testURL,
+                displayName: "Magnet (Test Domain)",
+                isInternal: false
+            )
+            websites.append(testWebsite)
+            saveCurrentProfile()
+            
+            // Perform initial ping
+            Task {
+                let result = await websiteMonitor.ping(url: testURL)
+                if let index = websites.firstIndex(where: { $0.url == testURL }) {
+                    websites[index].addPingResult(result)
+                    saveCurrentProfile()
+                }
+            }
         }
     }
     
