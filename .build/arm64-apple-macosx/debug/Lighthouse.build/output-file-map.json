@@ -37,6 +37,13 @@
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.dia"
   },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Models/ProjectMapping.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping.dia"
+  },
   "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebhookConfig.swift": {
     "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookConfig.d",
     "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookConfig.swift.o",
@@ -107,6 +114,13 @@
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.dia"
   },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectMappingStorage.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage.dia"
+  },
   "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ShortcutManager.swift": {
     "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShortcutManager.d",
     "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShortcutManager.swift.o",
@@ -141,6 +155,13 @@
     "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage~partial.swiftmodule",
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Theme.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme.dia"
   },
   "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/FrameworkIconMapper.swift": {
     "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.d",
@@ -197,6 +218,20 @@
     "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView~partial.swiftmodule",
     "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swiftdeps",
     "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectGroupView.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView.dia"
+  },
+  "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectMappingsView.swift": {
+    "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView.d",
+    "object": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView.swift.o",
+    "swiftmodule": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView.swiftdeps",
+    "diagnostics": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView.dia"
   },
   "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebhookSettingsView.swift": {
     "dependencies": "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookSettingsView.d",

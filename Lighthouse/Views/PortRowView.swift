@@ -19,7 +19,7 @@ struct PortRowView: View {
             Button(action: onToggleStar) {
                 Image(systemName: port.isStarred ? "star.fill" : "star")
                     .font(.system(size: 11))
-                    .foregroundColor(port.isStarred ? .yellow : .primary.opacity(0.3))
+                    .foregroundColor(port.isStarred ? Theme.star : Theme.textMuted)
             }
             .buttonStyle(.plain)
             .frame(width: 20)
@@ -31,15 +31,15 @@ struct PortRowView: View {
             
             // Status indicator - fixed position
             Circle()
-                .fill(Color.green)
+                .fill(Theme.success)
                 .frame(width: 7, height: 7)
-                .shadow(color: Color.green.opacity(0.3), radius: 1.5, x: 0, y: 0)
+                .shadow(color: Theme.success.opacity(0.4), radius: 2, x: 0, y: 0)
                 .frame(width: 18)
             
             // Port number (like response time) - fixed width
             Text(port.portString)
                 .font(.system(size: 11, design: .monospaced))
-                .foregroundColor(.primary.opacity(0.6))
+                .foregroundColor(Theme.textSecondary)
                 .frame(width: 60, alignment: .leading)
 
             // Project/folder name - fixed width
@@ -49,7 +49,7 @@ struct PortRowView: View {
                 } else {
                     Text(port.displayName)
                         .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(.primary)
+                        .foregroundColor(Theme.textPrimary)
                 }
             }
             .frame(width: 200, alignment: .leading)
@@ -57,7 +57,7 @@ struct PortRowView: View {
             // Framework/app type - fixed width
             Text(port.secondaryInfo ?? "Server")
                 .font(.system(size: 11))
-                .foregroundColor(.secondary.opacity(0.8))
+                .foregroundColor(Theme.textSecondary)
                 .frame(width: 120, alignment: .leading)
 
             Spacer()
@@ -71,13 +71,13 @@ struct PortRowView: View {
                 IconButton(icon: "doc.text", help: "View logs", action: { showingLogs = true })
                 IconButton(icon: "safari", help: "Open in browser", action: onOpen)
                 IconButton(icon: "doc.on.doc", help: "Copy URL", action: onCopy)
-                IconButton(icon: "xmark.circle.fill", help: "Stop server", color: .red, action: onKill)
+                IconButton(icon: "xmark.circle.fill", help: "Stop server", color: Theme.error, action: onKill)
             }
             .frame(width: isDatabasePort ? 135 : 110, alignment: .trailing)
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
-        .background(isHovering ? Color.primary.opacity(0.03) : Color.clear)
+        .background(isHovering ? Theme.hoverBackground : Color.clear)
         .contentShape(Rectangle())
         .onHover { isHovering = $0 }
         .help(port.commandLine ?? "")
@@ -135,11 +135,11 @@ struct PortRowView: View {
             HStack(spacing: 6) {
                 Text(port.displayName)
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundColor(.primary)
+                    .foregroundColor(Theme.textPrimary)
                 
                 Image(systemName: "chevron.down")
                     .font(.system(size: 8, weight: .semibold))
-                    .foregroundColor(.primary.opacity(0.3))
+                    .foregroundColor(Theme.textMuted)
             }
         }
         .menuStyle(.borderlessButton)
@@ -155,12 +155,12 @@ struct PortRowView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 14, height: 14)
-                    .opacity(0.7)
+                    .opacity(0.85)
             } else {
                 // Use SF Symbol
                 Image(systemName: iconInfo.fallbackSymbol)
                     .font(.system(size: 12))
-                    .foregroundColor(.primary.opacity(0.5))
+                    .foregroundColor(Theme.iconDefault)
             }
         }
     }
@@ -187,7 +187,7 @@ struct PortRowView: View {
 struct IconButton: View {
     let icon: String
     let help: String
-    var color: Color = .primary
+    var color: Color = Theme.textPrimary
     let action: () -> Void
 
     @State private var isHovering = false
@@ -196,9 +196,9 @@ struct IconButton: View {
         Button(action: action) {
             Image(systemName: icon)
                 .font(.system(size: 11.5))
-                .foregroundColor(isHovering ? color : .primary.opacity(0.35))
+                .foregroundColor(isHovering ? color : Theme.iconDefault)
                 .frame(width: 24, height: 24)
-                .background(isHovering ? color.opacity(0.1) : Color.clear)
+                .background(isHovering ? color.opacity(0.15) : Color.clear)
                 .cornerRadius(4)
                 .scaleEffect(isHovering ? 1.05 : 1.0)
                 .animation(.easeInOut(duration: 0.15), value: isHovering)

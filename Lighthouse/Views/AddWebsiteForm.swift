@@ -31,17 +31,17 @@ struct AddWebsiteForm: View {
             HStack(spacing: 10) {
                 Image(systemName: "plus.circle")
                     .font(.system(size: 11))
-                    .foregroundColor(.primary.opacity(0.4))
+                    .foregroundColor(Theme.iconDefault)
                 
                 Text("Add Site")
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundColor(.primary.opacity(0.5))
+                    .foregroundColor(Theme.textSecondary)
                 
                 Spacer()
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 8)
-            .background(Color.primary.opacity(0.02))
+            .background(Theme.sectionBackground)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -54,14 +54,24 @@ struct AddWebsiteForm: View {
                 TextField("https://example.com", text: $urlText)
                     .textFieldStyle(.plain)
                     .font(.system(size: 11))
+                    .foregroundColor(Theme.textPrimary)
                     .disabled(isAdding)
                     .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Theme.inputBackground)
+                    .cornerRadius(4)
                 
                 TextField("Display name (optional)", text: $nameText)
                     .textFieldStyle(.plain)
                     .font(.system(size: 11))
+                    .foregroundColor(Theme.textPrimary)
                     .disabled(isAdding)
                     .frame(width: 150)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
+                    .background(Theme.inputBackground)
+                    .cornerRadius(4)
                 
                 // Action buttons inline
                 HStack(spacing: 6) {
@@ -77,7 +87,7 @@ struct AddWebsiteForm: View {
                         } else {
                             Image(systemName: "checkmark")
                                 .font(.system(size: 10, weight: .semibold))
-                                .foregroundColor(.primary.opacity(0.6))
+                                .foregroundColor(Theme.success)
                         }
                     }
                     .buttonStyle(.plain)
@@ -92,7 +102,7 @@ struct AddWebsiteForm: View {
                     } label: {
                         Image(systemName: "xmark")
                             .font(.system(size: 9, weight: .semibold))
-                            .foregroundColor(.primary.opacity(0.4))
+                            .foregroundColor(Theme.textTertiary)
                     }
                     .buttonStyle(.plain)
                     .disabled(isAdding)
@@ -105,11 +115,11 @@ struct AddWebsiteForm: View {
                 HStack(spacing: 8) {
                     Image(systemName: "info.circle")
                         .font(.system(size: 9))
-                        .foregroundColor(.blue.opacity(0.6))
+                        .foregroundColor(Theme.accent)
                     
                     Text("Internal website detected")
                         .font(.system(size: 10))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Theme.textSecondary)
                     
                     Spacer()
                     
@@ -127,10 +137,10 @@ struct AddWebsiteForm: View {
                         HStack(spacing: 4) {
                             Text(selectedFramework ?? "Framework")
                                 .font(.system(size: 10))
-                                .foregroundColor(.secondary)
+                                .foregroundColor(Theme.textSecondary)
                             Image(systemName: "chevron.down")
                                 .font(.system(size: 8))
-                                .foregroundColor(.secondary)
+                                .foregroundColor(Theme.textSecondary)
                         }
                     }
                     .menuStyle(.borderlessButton)
@@ -142,11 +152,11 @@ struct AddWebsiteForm: View {
                 HStack(spacing: 6) {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .font(.system(size: 9))
-                        .foregroundColor(.orange.opacity(0.7))
+                        .foregroundColor(Theme.warning)
                     
                     Text(errorMessage)
                         .font(.system(size: 10))
-                        .foregroundColor(.orange.opacity(0.7))
+                        .foregroundColor(Theme.warning)
                     
                     Spacer()
                 }
@@ -154,7 +164,7 @@ struct AddWebsiteForm: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
-        .background(Color.primary.opacity(0.02))
+        .background(Theme.sectionBackground)
     }
     
     private var isValidInput: Bool {

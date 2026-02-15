@@ -48,6 +48,11 @@ class PortViewModel: ObservableObject {
     
     // Webhooks
     @Published var webhooks: [WebhookConfig] = []
+    
+    // Project mappings
+    @Published var projectMappings: [ProjectMapping] = []
+    @Published var groupedPorts: [ProjectGroup] = []
+    @Published var expandedGroups: Set<String> = []  // Track which groups are expanded
 
     private let scanner = PortScanner()
     private let processManager = ProcessManager()
@@ -59,6 +64,7 @@ class PortViewModel: ObservableObject {
     private let favoritesStorage = FavoritesStorage()
     private let webhookStorage = WebhookStorage()
     private let webhookService = WebhookService.shared
+    private let projectMappingStorage = ProjectMappingStorage()
 
     private var refreshTimer: AnyCancellable?
     private var websiteRefreshTimer: AnyCancellable?
@@ -96,6 +102,101 @@ class PortViewModel: ObservableObject {
             }
             return lhs.port < rhs.port
         }
+    }
+    
+    // MARK: - Project Grouping
+    
+    /// Group ports by project mapping
+    func updateGroupedPorts() {
+        let devPortsList = devPorts
+        var groups: [String: ProjectGroup] = [:]
+        var unknownCounter = 1
+        var unmatchedPorts: [PortInfo] = []
+        
+        // First, try to match each port to a known project
+        for port in devPortsList {
+            var matched = false
+            
+            for mapping in projectMappings where mapping.isEnabled {
+                if mapping.matches(
+                    folderName: port.folderName,
+                    workingDirectory: port.workingDirectory,
+                    projectName: port.projectName
+                ) {
+                    let groupId = mapping.id.uuidString
+                    if var group = groups[groupId] {
+                        group.ports.append(port)
+                        groups[groupId] = group
+                    } else {
+                        groups[groupId] = ProjectGroup(
+                            id: groupId,
+                            name: mapping.name,
+                            mapping: mapping,
+                            ports: [port],
+                            isExpanded: expandedGroups.contains(groupId) || expandedGroups.isEmpty
+                        )
+                    }
+                    matched = true
+                    break
+                }
+            }
+            
+            if !matched {
+                unmatchedPorts.append(port)
+            }
+        }
+        
+        // Group unmatched ports by their folder/project name
+        var unknownGroups: [String: [PortInfo]] = [:]
+        for port in unmatchedPorts {
+            let key = port.folderName ?? port.projectName ?? port.processName
+            if unknownGroups[key] == nil {
+                unknownGroups[key] = []
+            }
+            unknownGroups[key]?.append(port)
+        }
+        
+        // Create unknown project groups
+        for (_, ports) in unknownGroups.sorted(by: { $0.key < $1.key }) {
+            let groupId = "unknown-\(unknownCounter)"
+            let groupName = "Unknown Project \(unknownCounter)"
+            groups[groupId] = ProjectGroup(
+                id: groupId,
+                name: groupName,
+                mapping: nil,
+                ports: ports,
+                isExpanded: expandedGroups.contains(groupId) || expandedGroups.isEmpty
+            )
+            unknownCounter += 1
+        }
+        
+        // Sort groups: known projects first (alphabetically), then unknown projects
+        groupedPorts = groups.values.sorted { lhs, rhs in
+            // Known projects come first
+            if lhs.isUnknown != rhs.isUnknown {
+                return !lhs.isUnknown
+            }
+            // Then sort alphabetically
+            return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
+        }
+        
+        // Initialize expanded state for new groups
+        if expandedGroups.isEmpty {
+            expandedGroups = Set(groupedPorts.map { $0.id })
+        }
+    }
+    
+    func toggleGroupExpanded(_ groupId: String) {
+        if expandedGroups.contains(groupId) {
+            expandedGroups.remove(groupId)
+        } else {
+            expandedGroups.insert(groupId)
+        }
+        updateGroupedPorts()
+    }
+    
+    func isGroupExpanded(_ groupId: String) -> Bool {
+        expandedGroups.contains(groupId)
     }
     
     // Sorted websites with favorites first
@@ -171,6 +272,7 @@ class PortViewModel: ObservableObject {
         previousPortPIDs = newPIDs
         isLoading = false
         updateSystemHealth()
+        updateGroupedPorts()
     }
 
     func startAutoRefresh() {
@@ -273,6 +375,9 @@ class PortViewModel: ObservableObject {
         
         // Load webhooks
         webhooks = webhookStorage.load()
+        
+        // Load project mappings
+        projectMappings = projectMappingStorage.load()
         
         // Check Docker availability
         dockerAvailable = dockerManager.isDockerAvailable
@@ -611,5 +716,32 @@ class PortViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    // MARK: - Project Mapping Management
+    
+    func addProjectMapping(_ mapping: ProjectMapping) {
+        projectMappings.append(mapping)
+        try? projectMappingStorage.save(projectMappings)
+        updateGroupedPorts()
+    }
+    
+    func removeProjectMapping(id: UUID) {
+        projectMappings.removeAll { $0.id == id }
+        try? projectMappingStorage.save(projectMappings)
+        updateGroupedPorts()
+    }
+    
+    func updateProjectMapping(_ mapping: ProjectMapping) {
+        if let index = projectMappings.firstIndex(where: { $0.id == mapping.id }) {
+            projectMappings[index] = mapping
+            try? projectMappingStorage.save(projectMappings)
+            updateGroupedPorts()
+        }
+    }
+    
+    func reloadProjectMappings() {
+        projectMappings = projectMappingStorage.load()
+        updateGroupedPorts()
     }
 }

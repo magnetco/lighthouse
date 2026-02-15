@@ -44,6 +44,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/ProjectMapping.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebhookConfig.swift"
         },
         {
@@ -84,6 +88,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectMappingStorage.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ShortcutManager.swift"
         },
         {
@@ -101,6 +109,10 @@
         {
           "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Theme.swift"
         },
         {
           "kind" : "file",
@@ -136,6 +148,14 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectGroupView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectMappingsView.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebhookSettingsView.swift"
         },
         {
@@ -160,6 +180,7 @@
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/EnvironmentProfile.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PingResult.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortInfo.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookConfig.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteInfo.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/DockerManager.swift.o",
@@ -170,11 +191,13 @@
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShortcutManager.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookService.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookStorage.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteMonitor.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/FrameworkIconMapper.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortViewModel.swift.o",
@@ -183,6 +206,8 @@
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/LogViewerSheet.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/MenuBarView.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/PortRowView.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView.swift.o",
+        "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookSettingsView.swift.o",
         "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteRowView.swift.o"
       ],
@@ -254,6 +279,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookConfig.swift.o"
         },
         {
@@ -294,6 +323,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShortcutManager.swift.o"
         },
         {
@@ -311,6 +344,10 @@
         {
           "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebsiteStorage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme.swift.o"
         },
         {
           "kind" : "file",
@@ -346,6 +383,14 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookSettingsView.swift.o"
         },
         {
@@ -364,6 +409,7 @@
         "/Users/gavin/Projects/lighthouse/Lighthouse/Models/EnvironmentProfile.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PingResult.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Models/ProjectMapping.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebhookConfig.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebsiteInfo.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/DockerManager.swift",
@@ -374,11 +420,13 @@
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProfileStorage.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectDetector.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectMappingStorage.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ShortcutManager.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebhookService.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebhookStorage.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteMonitor.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Theme.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/FrameworkIconMapper.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift",
@@ -387,6 +435,8 @@
         "/Users/gavin/Projects/lighthouse/Lighthouse/Views/LogViewerSheet.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectGroupView.swift",
+        "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectMappingsView.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebhookSettingsView.swift",
         "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebsiteRowView.swift"
       ],
@@ -410,6 +460,7 @@
       "/Users/gavin/Projects/lighthouse/Lighthouse/Models/EnvironmentProfile.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PingResult.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Models/PortInfo.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Models/ProjectMapping.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebhookConfig.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebsiteInfo.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/DockerManager.swift",
@@ -420,11 +471,13 @@
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProcessManager.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProfileStorage.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectDetector.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectMappingStorage.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ShortcutManager.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebhookService.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebhookStorage.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteMonitor.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Theme.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/FrameworkIconMapper.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Utilities/ShellExecutor.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/ViewModels/PortViewModel.swift",
@@ -433,6 +486,8 @@
       "/Users/gavin/Projects/lighthouse/Lighthouse/Views/LogViewerSheet.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Views/MenuBarView.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectGroupView.swift",
+      "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectMappingsView.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebhookSettingsView.swift",
       "/Users/gavin/Projects/lighthouse/Lighthouse/Views/WebsiteRowView.swift",
       "-I",
@@ -543,6 +598,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/ProjectMapping.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Models/WebhookConfig.swift"
         },
         {
@@ -583,6 +642,10 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ProjectMappingStorage.swift"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/ShortcutManager.swift"
         },
         {
@@ -600,6 +663,10 @@
         {
           "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Services/WebsiteStorage.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Theme.swift"
         },
         {
           "kind" : "file",
@@ -632,6 +699,14 @@
         {
           "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/PortRowView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectGroupView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/Lighthouse/Views/ProjectMappingsView.swift"
         },
         {
           "kind" : "file",
@@ -733,11 +808,31 @@
         },
         {
           "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView.swift.o"
+        },
+        {
+          "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o"
         },
         {
           "kind" : "file",
           "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShortcutManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme.swift.o"
         },
         {
           "kind" : "file",

@@ -18,8 +18,13 @@
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProcessManager.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProfileStorage.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectDetector.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectGroupView.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMapping.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingStorage.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ProjectMappingsView.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShellExecutor.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/ShortcutManager.swift.o
+/Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/Theme.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookConfig.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookService.swift.o
 /Users/gavin/Projects/lighthouse/.build/arm64-apple-macosx/debug/Lighthouse.build/WebhookSettingsView.swift.o

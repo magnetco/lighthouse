@@ -10,6 +10,7 @@ struct WebhookSettingsView: View {
             HStack {
                 Text("Webhook Integrations")
                     .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(Theme.textPrimary)
                 
                 Spacer()
                 
@@ -18,28 +19,30 @@ struct WebhookSettingsView: View {
                 } label: {
                     Image(systemName: "plus.circle.fill")
                         .font(.system(size: 16))
+                        .foregroundColor(Theme.accent)
                 }
                 .buttonStyle(.plain)
                 .help("Add webhook")
             }
             .padding()
+            .background(Theme.headerGradient)
             
-            Divider()
+            SolidDivider()
             
             // Webhooks list
             if viewModel.webhooks.isEmpty {
                 VStack(spacing: 12) {
                     Image(systemName: "link.badge.plus")
                         .font(.system(size: 32))
-                        .foregroundColor(.secondary.opacity(0.5))
+                        .foregroundColor(Theme.textMuted)
                     
                     Text("No webhooks configured")
                         .font(.system(size: 12))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Theme.textSecondary)
                     
                     Text("Add webhooks to receive notifications in Slack, Discord, or custom endpoints")
                         .font(.system(size: 10))
-                        .foregroundColor(.secondary.opacity(0.7))
+                        .foregroundColor(Theme.textTertiary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 40)
                 }
@@ -67,7 +70,7 @@ struct WebhookSettingsView: View {
                             )
                             
                             if webhook.id != viewModel.webhooks.last?.id {
-                                Divider()
+                                SolidDivider()
                             }
                         }
                     }
@@ -75,6 +78,7 @@ struct WebhookSettingsView: View {
             }
         }
         .frame(width: 500, height: 400)
+        .background(Theme.windowBackground)
         .sheet(isPresented: $showingAddWebhook) {
             AddWebhookSheet { webhook in
                 viewModel.addWebhook(webhook)
@@ -98,16 +102,17 @@ struct WebhookRowView: View {
             // Type icon
             Image(systemName: typeIcon)
                 .font(.system(size: 14))
-                .foregroundColor(.secondary)
+                .foregroundColor(Theme.iconDefault)
                 .frame(width: 24)
             
             VStack(alignment: .leading, spacing: 4) {
                 Text(webhook.name)
                     .font(.system(size: 12, weight: .medium))
+                    .foregroundColor(Theme.textPrimary)
                 
                 Text(webhook.url)
                     .font(.system(size: 10))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Theme.textSecondary)
                     .lineLimit(1)
                     .truncationMode(.middle)
             }
@@ -130,6 +135,7 @@ struct WebhookRowView: View {
                     } else {
                         Image(systemName: "paperplane")
                             .font(.system(size: 11))
+                            .foregroundColor(Theme.iconDefault)
                     }
                 }
                 .buttonStyle(.plain)
@@ -148,7 +154,7 @@ struct WebhookRowView: View {
                 } label: {
                     Image(systemName: "trash")
                         .font(.system(size: 11))
-                        .foregroundColor(.red)
+                        .foregroundColor(Theme.error)
                 }
                 .buttonStyle(.plain)
                 .help("Remove webhook")
@@ -156,7 +162,7 @@ struct WebhookRowView: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 12)
-        .background(isHovering ? Color.primary.opacity(0.03) : Color.clear)
+        .background(isHovering ? Theme.hoverBackground : Color.clear)
         .onHover { isHovering = $0 }
     }
     

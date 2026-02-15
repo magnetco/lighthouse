@@ -22,7 +22,7 @@ struct WebsiteRowView: View {
             Button(action: onToggleStar) {
                 Image(systemName: website.isStarred ? "star.fill" : "star")
                     .font(.system(size: 11))
-                    .foregroundColor(website.isStarred ? .yellow : .primary.opacity(0.3))
+                    .foregroundColor(website.isStarred ? Theme.star : Theme.textMuted)
             }
             .buttonStyle(.plain)
             .frame(width: 20)
@@ -36,7 +36,7 @@ struct WebsiteRowView: View {
             Circle()
                 .fill(statusDotColor)
                 .frame(width: 7, height: 7)
-                .shadow(color: statusDotColor.opacity(0.3), radius: 1.5, x: 0, y: 0)
+                .shadow(color: statusDotColor.opacity(0.4), radius: 2, x: 0, y: 0)
                 .frame(width: 18)
             
             // Response time - fixed width (matches port number position)
@@ -48,7 +48,7 @@ struct WebsiteRowView: View {
                 } else {
                     Text("--")
                         .font(.system(size: 11, design: .monospaced))
-                        .foregroundColor(.primary.opacity(0.3))
+                        .foregroundColor(Theme.textMuted)
                 }
             }
             .frame(width: 60, alignment: .leading)
@@ -67,6 +67,7 @@ struct WebsiteRowView: View {
                         TextField("Display name", text: $editingName)
                             .textFieldStyle(.plain)
                             .font(.system(size: 12, weight: .medium))
+                            .foregroundColor(Theme.textPrimary)
                             .focused($isTextFieldFocused)
                             .onSubmit {
                                 saveEdit()
@@ -79,7 +80,7 @@ struct WebsiteRowView: View {
                         } label: {
                             Image(systemName: "checkmark")
                                 .font(.system(size: 9, weight: .semibold))
-                                .foregroundColor(.green.opacity(0.8))
+                                .foregroundColor(Theme.success)
                         }
                         .buttonStyle(.plain)
                         .help("Save")
@@ -90,7 +91,7 @@ struct WebsiteRowView: View {
                         } label: {
                             Image(systemName: "xmark")
                                 .font(.system(size: 8, weight: .semibold))
-                                .foregroundColor(.primary.opacity(0.5))
+                                .foregroundColor(Theme.textTertiary)
                         }
                         .buttonStyle(.plain)
                         .help("Cancel")
@@ -100,21 +101,21 @@ struct WebsiteRowView: View {
                     HStack(spacing: 4) {
                         Text(website.effectiveDisplayName)
                             .font(.system(size: 12, weight: .semibold))
-                            .foregroundColor(.primary)
+                            .foregroundColor(Theme.textPrimary)
                             .lineLimit(1)
                             .truncationMode(.tail)
                         
                         if showSuccess {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 10))
-                                .foregroundColor(.green.opacity(0.7))
+                                .foregroundColor(Theme.success)
                                 .transition(.scale.combined(with: .opacity))
                         }
                         
                         if showError {
                             Image(systemName: "exclamationmark.triangle.fill")
                                 .font(.system(size: 10))
-                                .foregroundColor(.orange.opacity(0.7))
+                                .foregroundColor(Theme.warning)
                                 .transition(.scale.combined(with: .opacity))
                         }
                     }
@@ -125,7 +126,7 @@ struct WebsiteRowView: View {
             // URL - fixed width
             Text(website.cleanedURL)
                 .font(.system(size: 11))
-                .foregroundColor(.secondary.opacity(0.8))
+                .foregroundColor(Theme.textSecondary)
                 .frame(width: 120, alignment: .leading)
                 .lineLimit(1)
                 .truncationMode(.middle)
@@ -138,14 +139,14 @@ struct WebsiteRowView: View {
                     IconButton(icon: "safari", help: "Open in browser", action: onOpen)
                     IconButton(icon: "doc.on.doc", help: "Copy URL", action: onCopy)
                     IconButton(icon: "pencil", help: "Edit", action: startEdit)
-                    IconButton(icon: "xmark.circle.fill", help: "Remove", color: .red, action: onRemove)
+                    IconButton(icon: "xmark.circle.fill", help: "Remove", color: Theme.error, action: onRemove)
                 }
             }
             .frame(width: 110, alignment: .trailing)
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
-        .background(isHovering ? Color.primary.opacity(0.03) : Color.clear)
+        .background(isHovering ? Theme.hoverBackground : Color.clear)
         .contentShape(Rectangle())
         .onHover { isHovering = $0 }
         .contextMenu {
@@ -166,7 +167,7 @@ struct WebsiteRowView: View {
     
     private var statusDotColor: Color {
         guard let status = website.lastPingStatus else {
-            return .gray.opacity(0.3)
+            return Theme.textMuted
         }
         return statusColor(status)
     }
@@ -182,19 +183,19 @@ struct WebsiteRowView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 14, height: 14)
-                        .opacity(0.7)
+                        .opacity(0.85)
                 } else {
                     // Use SF Symbol
                     Image(systemName: iconInfo.fallbackSymbol)
                         .font(.system(size: 12))
-                        .foregroundColor(.primary.opacity(0.5))
+                        .foregroundColor(Theme.iconDefault)
                 }
             } else {
                 // External website - show globe icon
                 let iconInfo = FrameworkIconMapper.externalWebsiteIcon()
                 Image(systemName: iconInfo.name)
                     .font(.system(size: 12))
-                    .foregroundColor(.primary.opacity(0.5))
+                    .foregroundColor(Theme.iconDefault)
             }
         }
     }
@@ -219,26 +220,26 @@ struct WebsiteRowView: View {
                         HStack(spacing: 8) {
                             Text(index == 0 ? "Latest:" : ping.timeAgo)
                                 .font(.system(size: 11, weight: index == 0 ? .semibold : .regular))
-                                .foregroundColor(index == 0 ? .primary : .secondary)
+                                .foregroundColor(index == 0 ? Theme.textPrimary : Theme.textSecondary)
                                 .frame(width: 60, alignment: .leading)
                             
                             Text(ping.statusDescription)
                                 .font(.system(size: 11, weight: .medium))
-                                .foregroundColor(ping.isReachable ? .primary : .red)
+                                .foregroundColor(ping.isReachable ? Theme.textPrimary : Theme.error)
                             
                             Text("•")
-                                .foregroundColor(.secondary)
+                                .foregroundColor(Theme.textSecondary)
                                 .font(.system(size: 11))
                             
                             Text(ping.responseTimeMs)
                                 .font(.system(size: 11, design: .monospaced))
-                                .foregroundColor(.secondary)
+                                .foregroundColor(Theme.textSecondary)
                         }
                     }
                 }
                 
                 if website.recentPings.count > 1 {
-                    Divider()
+                    SolidDivider()
                         .padding(.vertical, 4)
                     
                     // Summary stats
@@ -247,20 +248,20 @@ struct WebsiteRowView: View {
                             HStack(spacing: 4) {
                                 Text("Avg:")
                                     .font(.system(size: 11))
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(Theme.textSecondary)
                                 Text(avgTime)
                                     .font(.system(size: 11, design: .monospaced))
-                                    .foregroundColor(.primary)
+                                    .foregroundColor(Theme.textPrimary)
                             }
                         }
                         
                         if let uptime = website.uptimeString {
                             HStack(spacing: 4) {
                                 Text("•")
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(Theme.textSecondary)
                                 Text("Uptime:")
                                     .font(.system(size: 11))
-                                    .foregroundColor(.secondary)
+                                    .foregroundColor(Theme.textSecondary)
                                 Text(uptime)
                                     .font(.system(size: 11, weight: .medium))
                                     .foregroundColor(uptimeColor(website.uptimePercentage ?? 0))
@@ -271,43 +272,44 @@ struct WebsiteRowView: View {
             } else {
                 Text("No ping data yet")
                     .font(.system(size: 11))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Theme.textSecondary)
             }
         }
         .frame(minWidth: 250)
+        .background(Theme.windowBackground)
     }
     
     private func statusColor(_ status: PingStatus) -> Color {
         switch status {
         case .healthy:
-            return .green
+            return Theme.success
         case .warning:
-            return .orange
+            return Theme.warning
         case .error:
-            return .red
+            return Theme.error
         case .unknown:
-            return .gray
+            return Theme.textMuted
         }
     }
     
     private func uptimeColor(_ percentage: Double) -> Color {
         if percentage >= 95 {
-            return .green
+            return Theme.success
         } else if percentage >= 80 {
-            return .orange
+            return Theme.warning
         } else {
-            return .red
+            return Theme.error
         }
     }
     
     private func responseTimeColor(_ responseTime: TimeInterval) -> Color {
         let ms = responseTime * 1000
         if ms < 200 {
-            return .primary.opacity(0.6)
+            return Theme.textSecondary
         } else if ms < 500 {
-            return .orange.opacity(0.8)
+            return Theme.warning
         } else {
-            return .red.opacity(0.8)
+            return Theme.error
         }
     }
     

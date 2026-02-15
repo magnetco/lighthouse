@@ -4,6 +4,7 @@ struct MenuBarView: View {
     @ObservedObject var viewModel: PortViewModel
     @State private var isAddingWebsite = false
     @State private var showingWebhookSettings = false
+    @State private var showingProjectMappings = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -11,7 +12,7 @@ struct MenuBarView: View {
             HStack(spacing: 12) {
                 Text("LOCAL")
                     .font(.system(size: 10, weight: .semibold))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Theme.textSecondary)
                     .tracking(0.5)
 
                 Spacer()
@@ -26,7 +27,7 @@ struct MenuBarView: View {
                     } else {
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 10, weight: .medium))
-                            .foregroundColor(.primary.opacity(0.5))
+                            .foregroundColor(Theme.iconDefault)
                     }
                 }
                 .buttonStyle(.plain)
@@ -35,16 +36,17 @@ struct MenuBarView: View {
             .padding(.horizontal, 20)
             .padding(.top, 12)
             .padding(.bottom, 8)
+            .background(Theme.headerGradient)
 
-            Divider()
+            SolidDivider()
 
-            // Local Ports Content
+            // Local Ports Content (Grouped by Project)
             if viewModel.isLoading && viewModel.ports.isEmpty {
                 loadingView
-            } else if viewModel.devPorts.isEmpty {
+            } else if viewModel.groupedPorts.isEmpty {
                 emptyView
             } else {
-                portList
+                groupedPortList
             }
 
             // Nautical Separator
@@ -63,7 +65,7 @@ struct MenuBarView: View {
                 dockerSection
             }
             
-            Divider()
+            SolidDivider()
 
             // Footer
             HStack {
@@ -74,14 +76,24 @@ struct MenuBarView: View {
                         .font(.system(size: 11))
                 }
                 .buttonStyle(.plain)
-                .foregroundColor(.secondary.opacity(0.6))
+                .foregroundColor(Theme.iconDefault)
                 .help("Settings")
+                
+                Button {
+                    showingProjectMappings = true
+                } label: {
+                    Image(systemName: "folder.badge.gearshape")
+                        .font(.system(size: 11))
+                }
+                .buttonStyle(.plain)
+                .foregroundColor(Theme.iconDefault)
+                .help("Project Mappings")
                 
                 Spacer()
                 
                 Text("⌃⌥L")
                     .font(.system(size: 9, design: .monospaced))
-                    .foregroundColor(.secondary.opacity(0.5))
+                    .foregroundColor(Theme.textMuted)
                     .help("Global shortcut")
                 
                 Spacer()
@@ -91,12 +103,14 @@ struct MenuBarView: View {
                 }
                 .buttonStyle(.plain)
                 .font(.system(size: 10))
-                .foregroundColor(.secondary.opacity(0.6))
+                .foregroundColor(Theme.textSecondary)
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 8)
+            .background(Theme.headerBackground)
         }
         .frame(width: 520)
+        .background(Theme.windowBackground)
         .onAppear {
             viewModel.loadWebsites()
             viewModel.startAutoRefresh()
@@ -112,6 +126,9 @@ struct MenuBarView: View {
         .sheet(isPresented: $showingWebhookSettings) {
             WebhookSettingsView(viewModel: viewModel)
         }
+        .sheet(isPresented: $showingProjectMappings) {
+            ProjectMappingsView(viewModel: viewModel)
+        }
     }
 
     private var loadingView: some View {
@@ -120,7 +137,7 @@ struct MenuBarView: View {
                 .scaleEffect(0.6)
             Text("Scanning...")
                 .font(.system(size: 12))
-                .foregroundColor(.secondary)
+                .foregroundColor(Theme.textSecondary)
         }
         .frame(maxWidth: .infinity)
         .frame(height: 60)
@@ -130,43 +147,24 @@ struct MenuBarView: View {
         VStack(spacing: 4) {
             Text("No dev servers running")
                 .font(.system(size: 12))
-                .foregroundColor(.secondary)
+                .foregroundColor(Theme.textSecondary)
         }
         .frame(maxWidth: .infinity)
         .frame(height: 60)
     }
 
-    private var portList: some View {
-        LazyVStack(spacing: 0) {
-            ForEach(viewModel.devPorts) { port in
-                PortRowView(
-                    port: port,
-                    onOpen: { viewModel.openInBrowser(port: port) },
-                    onCopy: { viewModel.copyURL(port: port) },
-                    onKill: { Task { await viewModel.killProcess(port: port) } },
-                    onOpenFolder: { viewModel.openInFinder(port: port) },
-                    onOpenInEditor: { app in viewModel.openInEditor(port: port, app: app) },
-                    onOpenInTerminal: { viewModel.openInTerminal(port: port) },
-                    onToggleStar: { viewModel.togglePortStar(port) }
-                )
-
-                if port.id != viewModel.devPorts.last?.id {
-                    Divider()
-                        .opacity(0.3)
-                }
-            }
-        }
+    private var groupedPortList: some View {
+        GroupedPortListView(viewModel: viewModel)
     }
     
     private var nauticalSeparator: some View {
         VStack(spacing: 0) {
-            Divider()
-                .padding(.vertical, 8)
+            SolidDivider()
             
             HStack(spacing: 12) {
                 Text("REMOTE")
                     .font(.system(size: 10, weight: .semibold))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Theme.textSecondary)
                     .tracking(0.5)
                 
                 Spacer()
@@ -181,16 +179,17 @@ struct MenuBarView: View {
                     } else {
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 10, weight: .medium))
-                            .foregroundColor(.primary.opacity(0.5))
+                            .foregroundColor(Theme.iconDefault)
                     }
                 }
                 .buttonStyle(.plain)
                 .help("Refresh websites")
             }
             .padding(.horizontal, 20)
-            .padding(.bottom, 8)
+            .padding(.vertical, 8)
+            .background(Theme.sectionHeaderGradient)
             
-            Divider()
+            SolidDivider()
         }
     }
     
@@ -198,7 +197,7 @@ struct MenuBarView: View {
         HStack(spacing: 8) {
             Image(systemName: "map.fill")
                 .font(.system(size: 10))
-                .foregroundColor(.secondary.opacity(0.6))
+                .foregroundColor(Theme.iconDefault)
             
             Menu {
                 ForEach(viewModel.profiles) { profile in
@@ -228,7 +227,7 @@ struct MenuBarView: View {
                     Image(systemName: "chevron.down")
                         .font(.system(size: 8))
                 }
-                .foregroundColor(.primary.opacity(0.7))
+                .foregroundColor(Theme.textPrimary)
             }
             .buttonStyle(.plain)
             
@@ -238,17 +237,17 @@ struct MenuBarView: View {
                 HStack(spacing: 3) {
                     Image(systemName: "clock")
                         .font(.system(size: 8))
-                        .foregroundColor(.secondary.opacity(0.5))
+                        .foregroundColor(Theme.textMuted)
                     Text("\(Int(interval))s")
                         .font(.system(size: 9))
-                        .foregroundColor(.secondary.opacity(0.5))
+                        .foregroundColor(Theme.textMuted)
                 }
                 .help("Refresh interval")
             }
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 8)
-        .background(Color.primary.opacity(0.03))
+        .background(Theme.sectionBackground)
     }
     
     private var distantPortsSection: some View {
@@ -270,15 +269,15 @@ struct MenuBarView: View {
         VStack(spacing: 6) {
             Image(systemName: "binoculars.fill")
                 .font(.system(size: 18))
-                .foregroundColor(.primary.opacity(0.2))
+                .foregroundColor(Theme.textMuted)
             
             Text("No ships at sea")
                 .font(.system(size: 11))
-                .foregroundColor(.secondary.opacity(0.7))
+                .foregroundColor(Theme.textSecondary)
             
             Text("Add websites to monitor their status")
                 .font(.system(size: 10))
-                .foregroundColor(.secondary.opacity(0.5))
+                .foregroundColor(Theme.textTertiary)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 16)
@@ -301,8 +300,7 @@ struct MenuBarView: View {
                 )
                 
                 if website.id != viewModel.sortedWebsites.last?.id {
-                    Divider()
-                        .opacity(0.3)
+                    SolidDivider()
                 }
             }
         }
@@ -310,17 +308,16 @@ struct MenuBarView: View {
     
     private var dockerSection: some View {
         VStack(spacing: 0) {
-            Divider()
-                .padding(.vertical, 8)
+            SolidDivider()
             
             HStack(spacing: 12) {
                 Image(systemName: "shippingbox.fill")
                     .font(.system(size: 11))
-                    .foregroundColor(.primary.opacity(0.6))
+                    .foregroundColor(Theme.iconDefault)
                 
                 Text("CONTAINER SHIPS")
                     .font(.system(size: 10, weight: .semibold))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(Theme.textSecondary)
                     .tracking(0.5)
                 
                 Spacer()
@@ -335,30 +332,31 @@ struct MenuBarView: View {
                     } else {
                         Image(systemName: "arrow.clockwise")
                             .font(.system(size: 10, weight: .medium))
-                            .foregroundColor(.primary.opacity(0.5))
+                            .foregroundColor(Theme.iconDefault)
                     }
                 }
                 .buttonStyle(.plain)
                 .help("Refresh containers")
             }
             .padding(.horizontal, 20)
-            .padding(.bottom, 8)
+            .padding(.vertical, 8)
+            .background(Theme.sectionHeaderGradient)
             
-            Divider()
+            SolidDivider()
             
             if viewModel.containers.isEmpty {
                 VStack(spacing: 6) {
                     Image(systemName: "shippingbox")
                         .font(.system(size: 18))
-                        .foregroundColor(.primary.opacity(0.2))
+                        .foregroundColor(Theme.textMuted)
                     
                     Text("No containers")
                         .font(.system(size: 11))
-                        .foregroundColor(.secondary.opacity(0.7))
+                        .foregroundColor(Theme.textSecondary)
                     
                     Text("Docker containers will appear here")
                         .font(.system(size: 10))
-                        .foregroundColor(.secondary.opacity(0.5))
+                        .foregroundColor(Theme.textTertiary)
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 16)
@@ -376,8 +374,7 @@ struct MenuBarView: View {
                             )
                             
                             if container.id != viewModel.containers.last?.id {
-                                Divider()
-                                    .opacity(0.3)
+                                SolidDivider()
                             }
                         }
                     }
@@ -385,5 +382,15 @@ struct MenuBarView: View {
                 .frame(height: 200)
             }
         }
+    }
+}
+
+// MARK: - Solid Divider Component
+
+struct SolidDivider: View {
+    var body: some View {
+        Rectangle()
+            .fill(Theme.border)
+            .frame(height: 1)
     }
 }

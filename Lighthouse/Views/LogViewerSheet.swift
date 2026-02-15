@@ -14,25 +14,26 @@ struct LogViewerSheet: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Ship's Log")
                         .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(Theme.textPrimary)
                     
                     HStack(spacing: 8) {
                         Text(port.displayName)
                             .font(.system(size: 12, weight: .medium))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(Theme.textSecondary)
                         
                         Text("•")
-                            .foregroundColor(.secondary.opacity(0.5))
+                            .foregroundColor(Theme.textMuted)
                         
                         Text("Port \(port.port)")
                             .font(.system(size: 12))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(Theme.textSecondary)
                         
                         Text("•")
-                            .foregroundColor(.secondary.opacity(0.5))
+                            .foregroundColor(Theme.textMuted)
                         
                         Text("PID \(port.pid)")
                             .font(.system(size: 12))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(Theme.textSecondary)
                     }
                 }
                 
@@ -45,6 +46,7 @@ struct LogViewerSheet: View {
                         Text("Auto-scroll")
                             .font(.system(size: 11))
                     }
+                    .foregroundColor(Theme.textSecondary)
                 }
                 .toggleStyle(.switch)
                 .controlSize(.mini)
@@ -54,13 +56,14 @@ struct LogViewerSheet: View {
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 16))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Theme.iconDefault)
                 }
                 .buttonStyle(.plain)
             }
             .padding(16)
+            .background(Theme.headerGradient)
             
-            Divider()
+            SolidDivider()
             
             // Log content
             if isLoading {
@@ -68,22 +71,22 @@ struct LogViewerSheet: View {
                     ProgressView()
                     Text("Loading logs...")
                         .font(.system(size: 12))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Theme.textSecondary)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             } else if logs.isEmpty {
                 VStack(spacing: 12) {
                     Image(systemName: "doc.text")
                         .font(.system(size: 32))
-                        .foregroundColor(.secondary.opacity(0.5))
+                        .foregroundColor(Theme.textMuted)
                     
                     Text("No logs available")
                         .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Theme.textSecondary)
                     
                     Text("System logs for this process may not be accessible")
                         .font(.system(size: 11))
-                        .foregroundColor(.secondary.opacity(0.7))
+                        .foregroundColor(Theme.textTertiary)
                         .multilineTextAlignment(.center)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -98,7 +101,7 @@ struct LogViewerSheet: View {
                         }
                         .padding(12)
                     }
-                    .background(Color(nsColor: .textBackgroundColor))
+                    .background(Theme.inputBackground)
                     .onChange(of: logs.count) { _ in
                         if autoScroll && !logs.isEmpty {
                             withAnimation {
@@ -109,13 +112,13 @@ struct LogViewerSheet: View {
                 }
             }
             
-            Divider()
+            SolidDivider()
             
             // Footer
             HStack {
                 Text("\(logs.count) lines")
                     .font(.system(size: 10))
-                    .foregroundColor(.secondary.opacity(0.7))
+                    .foregroundColor(Theme.textTertiary)
                 
                 Spacer()
                 
@@ -126,6 +129,7 @@ struct LogViewerSheet: View {
                 }
                 .buttonStyle(.plain)
                 .font(.system(size: 11))
+                .foregroundColor(Theme.textSecondary)
                 
                 Button("Copy All") {
                     let text = logs.joined(separator: "\n")
@@ -134,11 +138,14 @@ struct LogViewerSheet: View {
                 }
                 .buttonStyle(.plain)
                 .font(.system(size: 11))
+                .foregroundColor(Theme.textSecondary)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
+            .background(Theme.headerBackground)
         }
         .frame(width: 700, height: 500)
+        .background(Theme.windowBackground)
         .task {
             await loadLogs()
         }
@@ -159,7 +166,7 @@ struct LogLineView: View {
         HStack(alignment: .top, spacing: 8) {
             Text("\(index + 1)")
                 .font(.system(size: 10, design: .monospaced))
-                .foregroundColor(.secondary.opacity(0.5))
+                .foregroundColor(Theme.textMuted)
                 .frame(width: 40, alignment: .trailing)
             
             Text(line)
@@ -174,13 +181,13 @@ struct LogLineView: View {
     private var lineColor: Color {
         let lowercased = line.lowercased()
         if lowercased.contains("error") || lowercased.contains("fail") {
-            return .red
+            return Theme.error
         } else if lowercased.contains("warn") {
-            return .orange
+            return Theme.warning
         } else if lowercased.contains("info") {
-            return .blue
+            return Theme.accent
         } else {
-            return .primary
+            return Theme.textPrimary
         }
     }
 }
