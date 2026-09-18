@@ -71,7 +71,9 @@ run:
 		-scheme $(SCHEME) \
 		-configuration Debug \
 		build
-	@open "$(HOME)/Library/Developer/Xcode/DerivedData/$(APP_NAME)-*/Build/Products/Debug/$(APP_NAME).app"
+	@app=$$(ls -d "$(HOME)/Library/Developer/Xcode/DerivedData/$(APP_NAME)-"*/Build/Products/Debug/$(APP_NAME).app 2>/dev/null | head -1); \
+		if [ -z "$$app" ]; then echo "error: could not find $(APP_NAME).app in DerivedData"; exit 1; fi; \
+		open "$$app"
 
 # Version management
 version:

@@ -1,17 +1,14 @@
 {
   "images" : [
     {
-      "filename" : "prisma-icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "prisma-icon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "prisma-icon@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
