@@ -34,6 +34,9 @@ struct LighthouseApp: App {
                         // Disable any visual effect views
                         disableVisualEffects(in: contentView)
                     }
+
+                    // Keep panel open as a floating window when pinned
+                    PanelPinController.shared.attach(to: window)
                 })
         } label: {
             Image(systemName: "light.beacon.max.fill")

@@ -2,8 +2,8 @@ import SwiftUI
 
 struct MenuBarView: View {
     @ObservedObject var viewModel: PortViewModel
+    @ObservedObject private var pinController = PanelPinController.shared
     @State private var isAddingWebsite = false
-    @State private var showingWebhookSettings = false
     @State private var showingProjectMappings = false
 
     var body: some View {
@@ -70,14 +70,14 @@ struct MenuBarView: View {
             // Footer
             HStack {
                 Button {
-                    showingWebhookSettings = true
+                    pinController.toggle()
                 } label: {
-                    Image(systemName: "gearshape")
+                    Image(systemName: pinController.isPinned ? "pin.fill" : "pin")
                         .font(.system(size: 11))
                 }
                 .buttonStyle(.plain)
-                .foregroundColor(Theme.iconDefault)
-                .help("Settings")
+                .foregroundColor(pinController.isPinned ? Theme.accent : Theme.iconDefault)
+                .help(pinController.isPinned ? "Unpin panel" : "Pin panel open")
                 
                 Button {
                     showingProjectMappings = true
@@ -122,9 +122,6 @@ struct MenuBarView: View {
         }
         .onDisappear {
             viewModel.stopAutoRefresh()
-        }
-        .sheet(isPresented: $showingWebhookSettings) {
-            WebhookSettingsView(viewModel: viewModel)
         }
         .sheet(isPresented: $showingProjectMappings) {
             ProjectMappingsView(viewModel: viewModel)

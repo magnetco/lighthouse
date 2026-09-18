@@ -42,7 +42,7 @@
 		001000074 /* WebhookStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000075; };
 		001000076 /* ProjectGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000077; };
 		001000078 /* ProjectMappingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000079; };
-		001000080 /* WebhookSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000081; };
+		001000080 /* PanelPinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000081; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,7 +83,7 @@
 		001000075 /* WebhookStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookStorage.swift; sourceTree = "<group>"; };
 		001000077 /* ProjectGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGroupView.swift; sourceTree = "<group>"; };
 		001000079 /* ProjectMappingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMappingsView.swift; sourceTree = "<group>"; };
-		001000081 /* WebhookSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookSettingsView.swift; sourceTree = "<group>"; };
+		001000081 /* PanelPinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelPinController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,7 +154,6 @@
 				001000053 /* DockerContainerRow.swift */,
 				001000077 /* ProjectGroupView.swift */,
 				001000079 /* ProjectMappingsView.swift */,
-				001000081 /* WebhookSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -184,6 +183,7 @@
 				001000071 /* ShortcutManager.swift */,
 				001000073 /* WebhookService.swift */,
 				001000075 /* WebhookStorage.swift */,
+				001000081 /* PanelPinController.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 				001000074 /* WebhookStorage.swift in Sources */,
 				001000076 /* ProjectGroupView.swift in Sources */,
 				001000078 /* ProjectMappingsView.swift in Sources */,
-				001000080 /* WebhookSettingsView.swift in Sources */,
+				001000080 /* PanelPinController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
