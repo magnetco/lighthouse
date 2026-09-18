@@ -1,17 +1,14 @@
 {
   "images" : [
     {
-      "filename" : "django-icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "django-icon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "django-icon@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

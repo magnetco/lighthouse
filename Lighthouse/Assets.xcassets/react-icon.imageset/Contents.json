@@ -1,17 +1,14 @@
 {
   "images" : [
     {
-      "filename" : "react-icon.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "react-icon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "react-icon@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		001000001 /* LighthouseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000002; };
 		001000003 /* PortInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000004; };
-		001000005 /* FavoritePort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000006; };
 		001000007 /* ShellExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000008; };
 		001000009 /* PortScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000010; };
 		001000011 /* ProcessManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000012; };
@@ -17,7 +16,6 @@
 		001000013 /* PortViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000014; };
 		001000015 /* MenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000016; };
 		001000017 /* PortRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000018; };
-		001000019 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000020; };
 		001000021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 001000022; };
 		001000026 /* WebsiteInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000027; };
 		001000028 /* PingResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000029; };
@@ -34,13 +32,23 @@
 		001000050 /* DockerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000051; };
 		001000052 /* DockerContainerRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000053; };
 		001000054 /* FrameworkIconMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000055; };
+		001000060 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000061; };
+		001000062 /* ProjectMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000063; };
+		001000064 /* WebhookConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000065; };
+		001000066 /* FavoritesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000067; };
+		001000068 /* ProjectMappingStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000069; };
+		001000070 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000071; };
+		001000072 /* WebhookService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000073; };
+		001000074 /* WebhookStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000075; };
+		001000076 /* ProjectGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000077; };
+		001000078 /* ProjectMappingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000079; };
+		001000080 /* WebhookSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001000081; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		001000100 /* Lighthouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lighthouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		001000002 /* LighthouseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LighthouseApp.swift; sourceTree = "<group>"; };
 		001000004 /* PortInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortInfo.swift; sourceTree = "<group>"; };
-		001000006 /* FavoritePort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePort.swift; sourceTree = "<group>"; };
 		001000008 /* ShellExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellExecutor.swift; sourceTree = "<group>"; };
 		001000010 /* PortScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortScanner.swift; sourceTree = "<group>"; };
 		001000012 /* ProcessManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessManager.swift; sourceTree = "<group>"; };
@@ -48,7 +56,6 @@
 		001000014 /* PortViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortViewModel.swift; sourceTree = "<group>"; };
 		001000016 /* MenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarView.swift; sourceTree = "<group>"; };
 		001000018 /* PortRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortRowView.swift; sourceTree = "<group>"; };
-		001000020 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		001000022 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		001000024 /* Lighthouse.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lighthouse.entitlements; sourceTree = "<group>"; };
 		001000027 /* WebsiteInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteInfo.swift; sourceTree = "<group>"; };
@@ -66,6 +73,17 @@
 		001000051 /* DockerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerManager.swift; sourceTree = "<group>"; };
 		001000053 /* DockerContainerRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockerContainerRow.swift; sourceTree = "<group>"; };
 		001000055 /* FrameworkIconMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameworkIconMapper.swift; sourceTree = "<group>"; };
+		001000061 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		001000063 /* ProjectMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMapping.swift; sourceTree = "<group>"; };
+		001000065 /* WebhookConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookConfig.swift; sourceTree = "<group>"; };
+		001000067 /* FavoritesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesStorage.swift; sourceTree = "<group>"; };
+		001000069 /* ProjectMappingStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMappingStorage.swift; sourceTree = "<group>"; };
+		001000071 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
+		001000073 /* WebhookService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookService.swift; sourceTree = "<group>"; };
+		001000075 /* WebhookStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookStorage.swift; sourceTree = "<group>"; };
+		001000077 /* ProjectGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGroupView.swift; sourceTree = "<group>"; };
+		001000079 /* ProjectMappingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectMappingsView.swift; sourceTree = "<group>"; };
+		001000081 /* WebhookSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebhookSettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				001000002 /* LighthouseApp.swift */,
+				001000061 /* Theme.swift */,
 				001000303 /* Models */,
 				001000304 /* Views */,
 				001000305 /* ViewModels */,
@@ -114,11 +133,12 @@
 			isa = PBXGroup;
 			children = (
 				001000004 /* PortInfo.swift */,
-				001000006 /* FavoritePort.swift */,
 				001000027 /* WebsiteInfo.swift */,
 				001000029 /* PingResult.swift */,
 				001000041 /* EnvironmentProfile.swift */,
 				001000049 /* DockerContainer.swift */,
+				001000063 /* ProjectMapping.swift */,
+				001000065 /* WebhookConfig.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,11 +148,13 @@
 			children = (
 				001000016 /* MenuBarView.swift */,
 				001000018 /* PortRowView.swift */,
-				001000020 /* SearchBarView.swift */,
 				001000035 /* WebsiteRowView.swift */,
 				001000037 /* AddWebsiteForm.swift */,
 				001000047 /* LogViewerSheet.swift */,
 				001000053 /* DockerContainerRow.swift */,
+				001000077 /* ProjectGroupView.swift */,
+				001000079 /* ProjectMappingsView.swift */,
+				001000081 /* WebhookSettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -157,6 +179,11 @@
 				001000043 /* ProfileStorage.swift */,
 				001000045 /* LogTailer.swift */,
 				001000051 /* DockerManager.swift */,
+				001000067 /* FavoritesStorage.swift */,
+				001000069 /* ProjectMappingStorage.swift */,
+				001000071 /* ShortcutManager.swift */,
+				001000073 /* WebhookService.swift */,
+				001000075 /* WebhookStorage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -241,7 +268,6 @@
 			files = (
 				001000001 /* LighthouseApp.swift in Sources */,
 				001000003 /* PortInfo.swift in Sources */,
-				001000005 /* FavoritePort.swift in Sources */,
 				001000007 /* ShellExecutor.swift in Sources */,
 				001000009 /* PortScanner.swift in Sources */,
 				001000011 /* ProcessManager.swift in Sources */,
@@ -249,7 +275,6 @@
 				001000013 /* PortViewModel.swift in Sources */,
 				001000015 /* MenuBarView.swift in Sources */,
 				001000017 /* PortRowView.swift in Sources */,
-				001000019 /* SearchBarView.swift in Sources */,
 				001000026 /* WebsiteInfo.swift in Sources */,
 				001000028 /* PingResult.swift in Sources */,
 				001000030 /* WebsiteStorage.swift in Sources */,
@@ -265,6 +290,17 @@
 				001000050 /* DockerManager.swift in Sources */,
 				001000052 /* DockerContainerRow.swift in Sources */,
 				001000054 /* FrameworkIconMapper.swift in Sources */,
+				001000060 /* Theme.swift in Sources */,
+				001000062 /* ProjectMapping.swift in Sources */,
+				001000064 /* WebhookConfig.swift in Sources */,
+				001000066 /* FavoritesStorage.swift in Sources */,
+				001000068 /* ProjectMappingStorage.swift in Sources */,
+				001000070 /* ShortcutManager.swift in Sources */,
+				001000072 /* WebhookService.swift in Sources */,
+				001000074 /* WebhookStorage.swift in Sources */,
+				001000076 /* ProjectGroupView.swift in Sources */,
+				001000078 /* ProjectMappingsView.swift in Sources */,
+				001000080 /* WebhookSettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

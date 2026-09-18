@@ -324,87 +324,89 @@ struct FrameworkIconMapper {
     /// Returns (assetName, isAsset, fallbackSFSymbol)
     private static func iconInfoForType(_ type: FrameworkType) -> (name: String, isAsset: Bool, fallbackSymbol: String) {
         switch type {
+        // isAsset is false until PNG files are added to the matching imageset
+        // (see Assets.xcassets/README-ICONS.md). UI falls back to SF Symbols.
         case .nextjs:
-            return ("nextjs-icon", true, "arrow.triangle.2.circlepath")
+            return ("nextjs-icon", false, "arrow.triangle.2.circlepath")
         case .vite:
-            return ("vite-icon", true, "bolt.fill")
+            return ("vite-icon", false, "bolt.fill")
         case .react:
-            return ("react-icon", true, "atom")
+            return ("react-icon", false, "atom")
         case .vue:
-            return ("vue-icon", true, "v.square.fill")
+            return ("vue-icon", false, "v.square.fill")
         case .angular:
-            return ("angular-icon", true, "a.square.fill")
+            return ("angular-icon", false, "a.square.fill")
         case .svelte:
-            return ("svelte-icon", true, "s.square.fill")
+            return ("svelte-icon", false, "s.square.fill")
         case .nuxt:
-            return ("nuxt-icon", true, "n.square.fill")
+            return ("nuxt-icon", false, "n.square.fill")
         case .remix:
-            return ("remix-icon", true, "music.note")
+            return ("remix-icon", false, "music.note")
         case .astro:
-            return ("astro-icon", true, "sparkles")
+            return ("astro-icon", false, "sparkles")
         case .gatsby:
-            return ("gatsby-icon", true, "g.square.fill")
+            return ("gatsby-icon", false, "g.square.fill")
         case .django:
-            return ("django-icon", true, "d.square.fill")
+            return ("django-icon", false, "d.square.fill")
         case .flask:
-            return ("flask-icon", true, "flask.fill")
+            return ("flask-icon", false, "flask.fill")
         case .fastapi:
-            return ("fastapi-icon", true, "bolt.horizontal.fill")
+            return ("fastapi-icon", false, "bolt.horizontal.fill")
         case .rails:
-            return ("rails-icon", true, "r.square.fill")
+            return ("rails-icon", false, "r.square.fill")
         case .laravel:
-            return ("laravel-icon", true, "l.square.fill")
+            return ("laravel-icon", false, "l.square.fill")
         case .prisma:
-            return ("prisma-icon", true, "cylinder.fill")
+            return ("prisma-icon", false, "cylinder.fill")
         case .docker:
-            return ("docker-icon", true, "shippingbox.fill")
+            return ("docker-icon", false, "shippingbox.fill")
         case .node:
-            return ("node-icon", true, "terminal.fill")
+            return ("node-icon", false, "terminal.fill")
         case .python:
-            return ("python-icon", true, "p.square.fill")
+            return ("python-icon", false, "p.square.fill")
         case .rust:
-            return ("rust-icon", true, "gearshape.fill")
+            return ("rust-icon", false, "gearshape.fill")
         case .go:
-            return ("go-icon", true, "g.circle.fill")
+            return ("go-icon", false, "g.circle.fill")
         case .bun:
-            return ("bun-icon", true, "b.square.fill")
+            return ("bun-icon", false, "b.square.fill")
         case .deno:
-            return ("deno-icon", true, "d.circle.fill")
+            return ("deno-icon", false, "d.circle.fill")
         case .webpack:
-            return ("webpack-icon", true, "cube.fill")
+            return ("webpack-icon", false, "cube.fill")
         case .parcel:
-            return ("parcel-icon", true, "shippingbox")
+            return ("parcel-icon", false, "shippingbox")
         case .turbopack:
-            return ("turbopack-icon", true, "bolt.square.fill")
+            return ("turbopack-icon", false, "bolt.square.fill")
         case .storybook:
-            return ("storybook-icon", true, "book.fill")
+            return ("storybook-icon", false, "book.fill")
         case .docusaurus:
-            return ("docusaurus-icon", true, "doc.text.fill")
+            return ("docusaurus-icon", false, "doc.text.fill")
         case .jekyll:
-            return ("jekyll-icon", true, "j.square.fill")
+            return ("jekyll-icon", false, "j.square.fill")
         case .hugo:
-            return ("hugo-icon", true, "h.square.fill")
+            return ("hugo-icon", false, "h.square.fill")
         case .php:
-            return ("php-icon", true, "p.circle.fill")
+            return ("php-icon", false, "p.circle.fill")
         case .gunicorn:
-            return ("gunicorn-icon", true, "g.square.fill")
+            return ("gunicorn-icon", false, "g.square.fill")
         case .puma:
-            return ("puma-icon", true, "pawprint.fill")
+            return ("puma-icon", false, "pawprint.fill")
         case .uvicorn:
-            return ("uvicorn-icon", true, "u.square.fill")
+            return ("uvicorn-icon", false, "u.square.fill")
         // Databases
         case .postgresql:
-            return ("postgresql-icon", true, "cylinder.split.1x2")
+            return ("postgresql-icon", false, "cylinder.split.1x2")
         case .mysql:
-            return ("mysql-icon", true, "cylinder")
+            return ("mysql-icon", false, "cylinder")
         case .mongodb:
-            return ("mongodb-icon", true, "leaf.fill")
+            return ("mongodb-icon", false, "leaf.fill")
         case .redis:
-            return ("redis-icon", true, "square.stack.3d.up.fill")
+            return ("redis-icon", false, "square.stack.3d.up.fill")
         case .memcached:
-            return ("memcached-icon", true, "memorychip.fill")
+            return ("memcached-icon", false, "memorychip.fill")
         case .elasticsearch:
-            return ("elasticsearch-icon", true, "magnifyingglass.circle.fill")
+            return ("elasticsearch-icon", false, "magnifyingglass.circle.fill")
         }
     }
 }
