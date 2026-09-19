@@ -11,7 +11,7 @@ struct MenuBarView: View {
             // Local Ports Header
             HStack(spacing: 12) {
                 Text("LOCAL")
-                    .font(.system(size: 10, weight: .semibold))
+                    .font(.system(size: 11, weight: .semibold))
                     .foregroundColor(Theme.textSecondary)
                     .tracking(0.5)
 
@@ -23,19 +23,19 @@ struct MenuBarView: View {
                     if viewModel.isLoading {
                         ProgressView()
                             .scaleEffect(0.5)
-                            .frame(width: 10, height: 10)
+                            .frame(width: 12, height: 12)
                     } else {
                         Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 10, weight: .medium))
+                            .font(.system(size: 11, weight: .medium))
                             .foregroundColor(Theme.iconDefault)
                     }
                 }
                 .buttonStyle(.plain)
                 .help("Refresh")
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 12)
-            .padding(.bottom, 8)
+            .padding(.horizontal, Theme.panelHorizontalPadding)
+            .padding(.top, 14)
+            .padding(.bottom, 10)
             .background(Theme.headerGradient)
 
             SolidDivider()
@@ -68,12 +68,12 @@ struct MenuBarView: View {
             SolidDivider()
 
             // Footer
-            HStack {
+            HStack(spacing: 12) {
                 Button {
                     pinController.toggle()
                 } label: {
                     Image(systemName: pinController.isPinned ? "pin.fill" : "pin")
-                        .font(.system(size: 11))
+                        .font(.system(size: 12))
                 }
                 .buttonStyle(.plain)
                 .foregroundColor(pinController.isPinned ? Theme.accent : Theme.iconDefault)
@@ -83,7 +83,7 @@ struct MenuBarView: View {
                     showingProjectMappings = true
                 } label: {
                     Image(systemName: "folder.badge.gearshape")
-                        .font(.system(size: 11))
+                        .font(.system(size: 12))
                 }
                 .buttonStyle(.plain)
                 .foregroundColor(Theme.iconDefault)
@@ -92,7 +92,7 @@ struct MenuBarView: View {
                 Spacer()
                 
                 Text("⌃⌥L")
-                    .font(.system(size: 9, design: .monospaced))
+                    .font(.system(size: 10, design: .monospaced))
                     .foregroundColor(Theme.textMuted)
                     .help("Global shortcut")
                 
@@ -102,14 +102,15 @@ struct MenuBarView: View {
                     NSApplication.shared.terminate(nil)
                 }
                 .buttonStyle(.plain)
-                .font(.system(size: 10))
+                .font(.system(size: 11))
                 .foregroundColor(Theme.textSecondary)
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 8)
+            .padding(.horizontal, Theme.panelHorizontalPadding)
+            .padding(.vertical, 10)
             .background(Theme.headerBackground)
         }
-        .frame(width: 520)
+        .frame(width: Theme.panelWidth)
+        .frame(minHeight: Theme.panelMinHeight, alignment: .top)
         .background(Theme.windowBackground)
         .onAppear {
             viewModel.loadWebsites()
@@ -137,17 +138,17 @@ struct MenuBarView: View {
                 .foregroundColor(Theme.textSecondary)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 60)
+        .frame(height: 72)
     }
 
     private var emptyView: some View {
         VStack(spacing: 4) {
             Text("No dev servers running")
-                .font(.system(size: 12))
+                .font(.system(size: 13))
                 .foregroundColor(Theme.textSecondary)
         }
         .frame(maxWidth: .infinity)
-        .frame(height: 60)
+        .frame(height: 72)
     }
 
     private var groupedPortList: some View {
@@ -160,7 +161,7 @@ struct MenuBarView: View {
             
             HStack(spacing: 12) {
                 Text("REMOTE")
-                    .font(.system(size: 10, weight: .semibold))
+                    .font(.system(size: 11, weight: .semibold))
                     .foregroundColor(Theme.textSecondary)
                     .tracking(0.5)
                 
@@ -172,18 +173,18 @@ struct MenuBarView: View {
                     if viewModel.isLoadingWebsites {
                         ProgressView()
                             .scaleEffect(0.5)
-                            .frame(width: 10, height: 10)
+                            .frame(width: 12, height: 12)
                     } else {
                         Image(systemName: "arrow.clockwise")
-                            .font(.system(size: 10, weight: .medium))
+                            .font(.system(size: 11, weight: .medium))
                             .foregroundColor(Theme.iconDefault)
                     }
                 }
                 .buttonStyle(.plain)
                 .help("Refresh websites")
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 8)
+            .padding(.horizontal, Theme.panelHorizontalPadding)
+            .padding(.vertical, 10)
             .background(Theme.sectionHeaderGradient)
             
             SolidDivider()
@@ -193,7 +194,7 @@ struct MenuBarView: View {
     private var profileSwitcher: some View {
         HStack(spacing: 8) {
             Image(systemName: "map.fill")
-                .font(.system(size: 10))
+                .font(.system(size: 11))
                 .foregroundColor(Theme.iconDefault)
             
             Menu {
@@ -214,12 +215,12 @@ struct MenuBarView: View {
                 HStack(spacing: 6) {
                     if let active = viewModel.activeProfile {
                         Image(systemName: active.icon)
-                            .font(.system(size: 10))
+                            .font(.system(size: 11))
                         Text(active.name)
-                            .font(.system(size: 11, weight: .medium))
+                            .font(.system(size: 12, weight: .medium))
                     } else {
                         Text("Select Profile")
-                            .font(.system(size: 11, weight: .medium))
+                            .font(.system(size: 12, weight: .medium))
                     }
                     Image(systemName: "chevron.down")
                         .font(.system(size: 8))
@@ -233,17 +234,17 @@ struct MenuBarView: View {
             if let interval = viewModel.activeProfile?.refreshInterval {
                 HStack(spacing: 3) {
                     Image(systemName: "clock")
-                        .font(.system(size: 8))
+                        .font(.system(size: 9))
                         .foregroundColor(Theme.textMuted)
                     Text("\(Int(interval))s")
-                        .font(.system(size: 9))
+                        .font(.system(size: 10))
                         .foregroundColor(Theme.textMuted)
                 }
                 .help("Refresh interval")
             }
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 8)
+        .padding(.horizontal, Theme.panelHorizontalPadding)
+        .padding(.vertical, 10)
         .background(Theme.sectionBackground)
     }
     
@@ -313,7 +314,7 @@ struct MenuBarView: View {
                     .foregroundColor(Theme.iconDefault)
                 
                 Text("CONTAINER SHIPS")
-                    .font(.system(size: 10, weight: .semibold))
+                    .font(.system(size: 11, weight: .semibold))
                     .foregroundColor(Theme.textSecondary)
                     .tracking(0.5)
                 
@@ -335,8 +336,8 @@ struct MenuBarView: View {
                 .buttonStyle(.plain)
                 .help("Refresh containers")
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 8)
+            .padding(.horizontal, Theme.panelHorizontalPadding)
+            .padding(.vertical, 10)
             .background(Theme.sectionHeaderGradient)
             
             SolidDivider()

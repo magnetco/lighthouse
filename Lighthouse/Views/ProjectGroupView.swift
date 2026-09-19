@@ -28,22 +28,22 @@ struct ProjectGroupView: View {
                     // Project icon
                     if let icon = group.mapping?.icon {
                         Image(systemName: icon)
-                            .font(.system(size: 11))
+                            .font(.system(size: 12))
                             .foregroundColor(group.isUnknown ? Theme.textMuted : Theme.accent)
                     } else {
                         Image(systemName: group.isUnknown ? "questionmark.folder" : "folder.fill")
-                            .font(.system(size: 11))
+                            .font(.system(size: 12))
                             .foregroundColor(group.isUnknown ? Theme.textMuted : Theme.accent)
                     }
                     
                     // Project name
                     Text(group.name)
-                        .font(.system(size: 11, weight: .semibold))
+                        .font(.system(size: Theme.primaryLabelSize, weight: .semibold))
                         .foregroundColor(group.isUnknown ? Theme.textSecondary : Theme.textPrimary)
                     
                     // Port count badge
                     Text("\(group.ports.count)")
-                        .font(.system(size: 9, weight: .medium))
+                        .font(.system(size: 10, weight: .medium))
                         .foregroundColor(Theme.textMuted)
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
@@ -61,13 +61,13 @@ struct ProjectGroupView: View {
                         }
                         if group.ports.count > 5 {
                             Text("+\(group.ports.count - 5)")
-                                .font(.system(size: 8))
+                                .font(.system(size: 9))
                                 .foregroundColor(Theme.textMuted)
                         }
                     }
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 8)
+                .padding(.horizontal, Theme.panelHorizontalPadding)
+                .padding(.vertical, Theme.rowVerticalPadding)
                 .background(isHovering ? Theme.hoverBackground : Theme.sectionBackground)
                 .contentShape(Rectangle())
             }

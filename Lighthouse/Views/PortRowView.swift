@@ -14,69 +14,76 @@ struct PortRowView: View {
     @State private var showingLogs = false
 
     var body: some View {
-        HStack(spacing: 0) {
-            // Star button - fixed width
+        HStack(spacing: 8) {
+            // Star — filled always; empty only on hover
             Button(action: onToggleStar) {
                 Image(systemName: port.isStarred ? "star.fill" : "star")
                     .font(.system(size: 11))
                     .foregroundColor(port.isStarred ? Theme.star : Theme.textMuted)
+                    .opacity(port.isStarred || isHovering ? 1 : 0)
             }
             .buttonStyle(.plain)
-            .frame(width: 20)
+            .frame(width: 18)
             .help(port.isStarred ? "Remove from favorites" : "Add to favorites")
             
-            // Framework icon - fixed width
+            // Framework icon
             frameworkIcon
-                .frame(width: 24, alignment: .center)
+                .frame(width: 20, alignment: .center)
             
-            // Status indicator - fixed position
-            Circle()
-                .fill(Theme.success)
-                .frame(width: 7, height: 7)
-                .shadow(color: Theme.success.opacity(0.4), radius: 2, x: 0, y: 0)
-                .frame(width: 18)
-            
-            // Port number (like response time) - fixed width
-            Text(port.portString)
-                .font(.system(size: 11, design: .monospaced))
-                .foregroundColor(Theme.textSecondary)
-                .frame(width: 60, alignment: .leading)
+            // Status + port
+            HStack(spacing: 6) {
+                Circle()
+                    .fill(Theme.success)
+                    .frame(width: 7, height: 7)
+                    .shadow(color: Theme.success.opacity(0.4), radius: 2, x: 0, y: 0)
+                
+                Text(port.portString)
+                    .font(.system(size: Theme.secondaryLabelSize, design: .monospaced))
+                    .foregroundColor(Theme.textSecondary)
+                    .frame(minWidth: 40, alignment: .leading)
+            }
 
-            // Project/folder name - fixed width
+            // Project/folder name — primary
             Group {
                 if port.workingDirectory != nil {
                     projectButton
                 } else {
                     Text(port.displayName)
-                        .font(.system(size: 12, weight: .semibold))
+                        .font(.system(size: Theme.primaryLabelSize, weight: .semibold))
                         .foregroundColor(Theme.textPrimary)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                 }
             }
-            .frame(width: 200, alignment: .leading)
+            .frame(minWidth: 100, maxWidth: 220, alignment: .leading)
+            .layoutPriority(2)
             
-            // Framework/app type - fixed width
+            // Framework/app type — secondary, flexible
             Text(port.secondaryInfo ?? "Server")
-                .font(.system(size: 11))
+                .font(.system(size: Theme.secondaryLabelSize))
                 .foregroundColor(Theme.textSecondary)
-                .frame(width: 120, alignment: .leading)
+                .lineLimit(1)
+                .truncationMode(.tail)
+                .frame(minWidth: 60, maxWidth: .infinity, alignment: .leading)
+                .layoutPriority(1)
 
-            Spacer()
-            
-            // Actions - always visible, fixed width
-            HStack(spacing: 6) {
-                // Show connection string button for databases
-                if isDatabasePort {
-                    IconButton(icon: "link", help: "Copy connection string", action: copyConnectionString)
+            // Actions — hover only
+            HStack(spacing: 4) {
+                if isHovering {
+                    if isDatabasePort {
+                        IconButton(icon: "link", help: "Copy connection string", action: copyConnectionString)
+                    }
+                    IconButton(icon: "doc.text", help: "View logs", action: { showingLogs = true })
+                    IconButton(icon: "safari", help: "Open in browser", action: onOpen)
+                    IconButton(icon: "doc.on.doc", help: "Copy URL", action: onCopy)
+                    IconButton(icon: "xmark.circle.fill", help: "Stop server", color: Theme.error, action: onKill)
                 }
-                IconButton(icon: "doc.text", help: "View logs", action: { showingLogs = true })
-                IconButton(icon: "safari", help: "Open in browser", action: onOpen)
-                IconButton(icon: "doc.on.doc", help: "Copy URL", action: onCopy)
-                IconButton(icon: "xmark.circle.fill", help: "Stop server", color: Theme.error, action: onKill)
             }
-            .frame(width: isDatabasePort ? 135 : 110, alignment: .trailing)
+            .frame(width: isHovering ? (isDatabasePort ? 132 : 108) : 0, alignment: .trailing)
+            .animation(.easeInOut(duration: 0.12), value: isHovering)
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 8)
+        .padding(.horizontal, Theme.panelHorizontalPadding)
+        .padding(.vertical, Theme.rowVerticalPadding)
         .background(isHovering ? Theme.hoverBackground : Color.clear)
         .contentShape(Rectangle())
         .onHover { isHovering = $0 }
@@ -134,8 +141,10 @@ struct PortRowView: View {
         } label: {
             HStack(spacing: 6) {
                 Text(port.displayName)
-                    .font(.system(size: 12, weight: .semibold))
+                    .font(.system(size: Theme.primaryLabelSize, weight: .semibold))
                     .foregroundColor(Theme.textPrimary)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
                 
                 Image(systemName: "chevron.down")
                     .font(.system(size: 8, weight: .semibold))
