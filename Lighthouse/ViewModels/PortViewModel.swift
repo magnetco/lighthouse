@@ -388,7 +388,7 @@ class PortViewModel: ObservableObject {
         // Migrate legacy websites.json into Production (or active) when that profile is empty
         migrateLegacyWebsitesIfNeeded()
         
-        // Seed Desk / K&P defaults into empty profiles; merge-by-URL for known seeds on first empty fill
+        // Merge Desk / K&P seed URLs into profiles (append missing; never remove user sites)
         seedDefaultSitesIfNeeded()
         
         // Persist immediately so remote URLs survive restart (defaults were previously in-memory only)
@@ -446,23 +446,21 @@ class PortViewModel: ObservableObject {
     }
     
     /// Seed Magnet Desk live sites into Production and K&P preview into Staging.
-    /// Only fills empty profiles (merge-by-URL when applying seeds so duplicates are skipped).
-    /// Does not wipe user-added sites on later launches.
+    /// Always merges by canonical URL: appends any missing seed, never removes or overwrites
+    /// user-added sites. Development has an empty seed list and stays unseeded.
     private func seedDefaultSitesIfNeeded() {
         for i in profiles.indices {
             let seeds = EnvironmentProfile.seedSites(forProfileName: profiles[i].name)
             guard !seeds.isEmpty else { continue }
             
-            // Only seed when this environment has no sites yet
-            guard profiles[i].websites.isEmpty else { continue }
-            
-            let existingKeys = Set(profiles[i].websites.map { EnvironmentProfile.canonicalURL($0.url) })
+            var existingKeys = Set(profiles[i].websites.map { EnvironmentProfile.canonicalURL($0.url) })
             for seed in seeds {
                 let key = EnvironmentProfile.canonicalURL(seed.url)
                 guard !existingKeys.contains(key) else { continue }
                 profiles[i].websites.append(
                     WebsiteInfo(url: seed.url, displayName: seed.name, isInternal: false)
                 )
+                existingKeys.insert(key)
             }
         }
     }
