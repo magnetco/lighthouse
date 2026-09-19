@@ -2,6 +2,11 @@ import AppKit
 import Combine
 
 /// Keeps the MenuBarExtra panel open as a floating window while pinned.
+///
+/// Critical: do **not** rewrite MenuBarExtra window chrome while unpinned.
+/// `WindowAccessor.updateNSView` fires on every SwiftUI refresh; mutating
+/// styleMask/level/hidesOnDeactivate in that path fights `.window` presentation
+/// and causes an open → dismiss flash loop.
 final class PanelPinController: ObservableObject {
     static let shared = PanelPinController()
 
@@ -11,7 +16,7 @@ final class PanelPinController: ObservableObject {
         didSet {
             guard oldValue != isPinned else { return }
             UserDefaults.standard.set(isPinned, forKey: Self.defaultsKey)
-            applyPinState()
+            applyPinTransition(from: oldValue, to: isPinned)
         }
     }
 
@@ -27,24 +32,37 @@ final class PanelPinController: ObservableObject {
     }
 
     /// Bind to the live MenuBarExtra window whenever it appears.
+    /// Safe to call on every `updateNSView` — only acts on window identity change.
     func attach(to window: NSWindow?) {
         guard let window else { return }
 
-        if panelWindow !== window {
-            detachCloseObserver()
-            panelWindow = window
-            observeClose(of: window)
+        // Same window: ignore spam from SwiftUI refreshes. Pin transitions
+        // are handled exclusively via `isPinned` didSet.
+        if panelWindow === window {
+            return
         }
 
-        applyPinState()
+        detachCloseObserver()
+        panelWindow = window
+        observeClose(of: window)
+
+        // Re-open while already pinned: promote after presentation settles.
+        // Unpinned: leave MenuBarExtra behavior completely untouched.
+        if isPinned {
+            DispatchQueue.main.async { [weak self] in
+                guard let self, self.panelWindow === window, self.isPinned else { return }
+                self.promoteToFloatingPanel(window)
+            }
+        }
     }
 
-    private func applyPinState() {
+    /// Apply window mutations only on explicit pin/unpin transitions.
+    private func applyPinTransition(from oldValue: Bool, to newValue: Bool) {
         guard let window = panelWindow else { return }
 
-        if isPinned {
+        if newValue && !oldValue {
             promoteToFloatingPanel(window)
-        } else {
+        } else if !newValue && oldValue {
             restoreMenuBarBehavior(window)
         }
     }
@@ -90,12 +108,12 @@ final class PanelPinController: ObservableObject {
             queue: .main
         ) { [weak self] _ in
             guard let self else { return }
-            // Closing a pinned panel should clear pin so the next open is a normal popover.
+            // Drop the window ref first so clearing pin does not rewrite a closing window.
+            self.panelWindow = nil
+            self.detachCloseObserver()
             if self.isPinned {
                 self.isPinned = false
             }
-            self.panelWindow = nil
-            self.detachCloseObserver()
         }
     }
 
