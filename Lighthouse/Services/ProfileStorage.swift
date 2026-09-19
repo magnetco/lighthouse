@@ -13,6 +13,16 @@ class ProfileStorage {
         fileURL = appDir.appendingPathComponent("profiles.json")
     }
     
+    /// Whether a profiles file already exists on disk.
+    var fileExists: Bool {
+        FileManager.default.fileExists(atPath: fileURL.path)
+    }
+    
+    /// Absolute path for debugging.
+    var filePath: String {
+        fileURL.path
+    }
+    
     func load() -> [EnvironmentProfile] {
         guard FileManager.default.fileExists(atPath: fileURL.path) else {
             // Return default profiles if file doesn't exist
@@ -36,7 +46,8 @@ class ProfileStorage {
         encoder.dateEncodingStrategy = .iso8601
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         let data = try encoder.encode(profiles)
-        try data.write(to: fileURL)
+        // Atomic write so a crash mid-save cannot leave a truncated profiles.json
+        try data.write(to: fileURL, options: .atomic)
     }
     
     func getActiveProfile(from profiles: [EnvironmentProfile]) -> EnvironmentProfile? {

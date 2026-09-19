@@ -24,6 +24,29 @@ struct EnvironmentProfile: Identifiable, Codable, Hashable {
         self.isActive = isActive
     }
     
+    /// Magnet Desk live client sites → Production
+    static let productionSeedSites: [(name: String, url: String)] = [
+        ("Magnet", "https://magnet.co"),
+        ("BSI Engineering", "https://bsiengr.com"),
+        ("Commonwealth", "https://commonwealthinc.com"),
+        ("Deseret First", "https://dfcu.com"),
+        ("Directions Group", "https://directionsgroup.com"),
+        ("Enthusiast Auto", "https://enthusiastauto.com"),
+        ("Gorilla Glue", "https://gorillatough.com"),
+        ("Inglis Digital", "https://inglisdigitalusa.com"),
+        ("Nexterra Environmental", "https://nexterraenvironmental.com"),
+        ("O'Keeffe's", "https://okeeffescompany.com"),
+        ("Ocean City", "https://oceancity.com"),
+        ("Vitis Tech", "https://vitistech.com"),
+        ("Waites", "https://waites.net"),
+        ("Washing Systems", "https://washingsystems.com"),
+    ]
+    
+    /// K&P preview → Staging
+    static let stagingSeedSites: [(name: String, url: String)] = [
+        ("Kohnen & Patton (preview)", "https://kplaw-web.vercel.app/"),
+    ]
+    
     // Predefined profiles
     static let development = EnvironmentProfile(
         name: "Development",
@@ -34,13 +57,16 @@ struct EnvironmentProfile: Identifiable, Codable, Hashable {
     static let staging = EnvironmentProfile(
         name: "Staging",
         icon: "wrench.and.screwdriver.fill",
+        websites: seedWebsites(stagingSeedSites),
         refreshInterval: 30
     )
     
     static let production = EnvironmentProfile(
         name: "Production",
         icon: "checkmark.seal.fill",
-        refreshInterval: 60
+        websites: seedWebsites(productionSeedSites),
+        refreshInterval: 60,
+        isActive: true
     )
     
     static let defaults: [EnvironmentProfile] = [
@@ -48,4 +74,31 @@ struct EnvironmentProfile: Identifiable, Codable, Hashable {
         .staging,
         .production
     ]
+    
+    /// Seed URLs for a profile name, if any.
+    static func seedSites(forProfileName name: String) -> [(name: String, url: String)] {
+        switch name.lowercased() {
+        case "production":
+            return productionSeedSites
+        case "staging":
+            return stagingSeedSites
+        default:
+            return []
+        }
+    }
+    
+    private static func seedWebsites(_ sites: [(name: String, url: String)]) -> [WebsiteInfo] {
+        sites.map { site in
+            WebsiteInfo(url: site.url, displayName: site.name, isInternal: false)
+        }
+    }
+    
+    /// Canonical URL key for merge-by-URL seeding.
+    static func canonicalURL(_ url: String) -> String {
+        var normalized = url.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
+        if normalized.hasSuffix("/") {
+            normalized = String(normalized.dropLast())
+        }
+        return normalized
+    }
 }
