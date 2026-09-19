@@ -72,6 +72,26 @@ enum Theme {
     /// Icon color on hover
     static let iconHover = Color(nsColor: NSColor(red: 0.80, green: 0.82, blue: 0.85, alpha: 1.0))
     
+    // MARK: - Panel Layout
+    
+    /// Default MenuBarExtra panel width (room for site names + hostnames)
+    static let panelWidth: CGFloat = 560
+    
+    /// Minimum panel height so short lists are not cramped
+    static let panelMinHeight: CGFloat = 400
+    
+    /// Horizontal inset for section headers, rows, and footer
+    static let panelHorizontalPadding: CGFloat = 18
+    
+    /// Vertical padding inside list rows
+    static let rowVerticalPadding: CGFloat = 11
+    
+    /// Primary label size (project / site names)
+    static let primaryLabelSize: CGFloat = 13
+    
+    /// Secondary label size (URLs, latency, chrome)
+    static let secondaryLabelSize: CGFloat = 11
+    
     // MARK: - Gradients (GitHub Desktop style header gradients)
     
     static let headerGradient = LinearGradient(

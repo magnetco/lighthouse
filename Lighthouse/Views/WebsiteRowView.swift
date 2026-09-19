@@ -17,41 +17,42 @@ struct WebsiteRowView: View {
     @FocusState private var isTextFieldFocused: Bool
     
     var body: some View {
-        HStack(spacing: 0) {
-            // Star button - fixed width
+        HStack(spacing: 8) {
+            // Star — keep filled always; empty only on hover to reduce chrome
             Button(action: onToggleStar) {
                 Image(systemName: website.isStarred ? "star.fill" : "star")
                     .font(.system(size: 11))
                     .foregroundColor(website.isStarred ? Theme.star : Theme.textMuted)
+                    .opacity(website.isStarred || isHovering ? 1 : 0)
             }
             .buttonStyle(.plain)
-            .frame(width: 20)
+            .frame(width: 18)
             .help(website.isStarred ? "Remove from favorites" : "Add to favorites")
             
-            // Framework/Globe icon - fixed width
+            // Framework/Globe icon
             frameworkIcon
-                .frame(width: 24, alignment: .center)
+                .frame(width: 20, alignment: .center)
             
-            // Status indicator dot - fixed position
-            Circle()
-                .fill(statusDotColor)
-                .frame(width: 7, height: 7)
-                .shadow(color: statusDotColor.opacity(0.4), radius: 2, x: 0, y: 0)
-                .frame(width: 18)
-            
-            // Response time - fixed width (matches port number position)
-            Group {
-                if let latestPing = website.latestPing, latestPing.isReachable {
-                    Text(latestPing.responseTimeMs)
-                        .font(.system(size: 11, design: .monospaced))
-                        .foregroundColor(responseTimeColor(latestPing.responseTime))
-                } else {
-                    Text("--")
-                        .font(.system(size: 11, design: .monospaced))
-                        .foregroundColor(Theme.textMuted)
+            // Status + latency
+            HStack(spacing: 6) {
+                Circle()
+                    .fill(statusDotColor)
+                    .frame(width: 7, height: 7)
+                    .shadow(color: statusDotColor.opacity(0.4), radius: 2, x: 0, y: 0)
+                
+                Group {
+                    if let latestPing = website.latestPing, latestPing.isReachable {
+                        Text(latestPing.responseTimeMs)
+                            .font(.system(size: Theme.secondaryLabelSize, design: .monospaced))
+                            .foregroundColor(responseTimeColor(latestPing.responseTime))
+                    } else {
+                        Text("--")
+                            .font(.system(size: Theme.secondaryLabelSize, design: .monospaced))
+                            .foregroundColor(Theme.textMuted)
+                    }
                 }
+                .frame(minWidth: 44, alignment: .leading)
             }
-            .frame(width: 60, alignment: .leading)
             .onHover { hovering in
                 showingTooltip = hovering
             }
@@ -60,21 +61,19 @@ struct WebsiteRowView: View {
                     .padding(12)
             }
             
-            // Website name - fixed width with inline editing
+            // Site name — flexible, primary hierarchy
             Group {
                 if isEditing {
                     HStack(spacing: 4) {
                         TextField("Display name", text: $editingName)
                             .textFieldStyle(.plain)
-                            .font(.system(size: 12, weight: .medium))
+                            .font(.system(size: Theme.primaryLabelSize, weight: .medium))
                             .foregroundColor(Theme.textPrimary)
                             .focused($isTextFieldFocused)
                             .onSubmit {
                                 saveEdit()
                             }
-                            .frame(width: 130)
                         
-                        // Save button
                         Button {
                             saveEdit()
                         } label: {
@@ -85,7 +84,6 @@ struct WebsiteRowView: View {
                         .buttonStyle(.plain)
                         .help("Save")
                         
-                        // Cancel button
                         Button {
                             cancelEdit()
                         } label: {
@@ -96,11 +94,10 @@ struct WebsiteRowView: View {
                         .buttonStyle(.plain)
                         .help("Cancel")
                     }
-                    .frame(width: 180, alignment: .leading)
                 } else {
                     HStack(spacing: 4) {
                         Text(website.effectiveDisplayName)
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(.system(size: Theme.primaryLabelSize, weight: .semibold))
                             .foregroundColor(Theme.textPrimary)
                             .lineLimit(1)
                             .truncationMode(.tail)
@@ -119,33 +116,34 @@ struct WebsiteRowView: View {
                                 .transition(.scale.combined(with: .opacity))
                         }
                     }
-                    .frame(width: 180, alignment: .leading)
                 }
             }
+            .frame(minWidth: 100, maxWidth: 200, alignment: .leading)
+            .layoutPriority(2)
             
-            // URL - fixed width
+            // Hostname — flexible; prefer showing the start of the host
             Text(website.cleanedURL)
-                .font(.system(size: 11))
+                .font(.system(size: Theme.secondaryLabelSize))
                 .foregroundColor(Theme.textSecondary)
-                .frame(width: 120, alignment: .leading)
                 .lineLimit(1)
-                .truncationMode(.middle)
+                .truncationMode(.tail)
+                .frame(minWidth: 100, maxWidth: .infinity, alignment: .leading)
+                .layoutPriority(1)
             
-            Spacer()
-            
-            // Actions - always visible, fixed width
-            HStack(spacing: 6) {
-                if !isEditing {
+            // Actions — hover (or edit) only to reduce competing chrome
+            HStack(spacing: 4) {
+                if !isEditing && isHovering {
                     IconButton(icon: "safari", help: "Open in browser", action: onOpen)
                     IconButton(icon: "doc.on.doc", help: "Copy URL", action: onCopy)
                     IconButton(icon: "pencil", help: "Edit", action: startEdit)
                     IconButton(icon: "xmark.circle.fill", help: "Remove", color: Theme.error, action: onRemove)
                 }
             }
-            .frame(width: 110, alignment: .trailing)
+            .frame(width: isHovering || isEditing ? 108 : 0, alignment: .trailing)
+            .animation(.easeInOut(duration: 0.12), value: isHovering)
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 8)
+        .padding(.horizontal, Theme.panelHorizontalPadding)
+        .padding(.vertical, Theme.rowVerticalPadding)
         .background(isHovering ? Theme.hoverBackground : Color.clear)
         .contentShape(Rectangle())
         .onHover { isHovering = $0 }

@@ -21,7 +21,7 @@ struct DockerContainerRow: View {
             VStack(alignment: .leading, spacing: 4) {
                 // Container name
                 Text(container.displayName)
-                    .font(.system(size: 12, weight: .medium))
+                    .font(.system(size: Theme.primaryLabelSize, weight: .medium))
                     .foregroundColor(Theme.textPrimary)
                 
                 // Image name
@@ -69,8 +69,8 @@ struct DockerContainerRow: View {
                 IconButton(icon: "trash", help: "Remove", color: Theme.error, action: onRemove)
             }
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 10)
+        .padding(.horizontal, Theme.panelHorizontalPadding)
+        .padding(.vertical, Theme.rowVerticalPadding)
         .background(isHovering ? Theme.hoverBackground : Color.clear)
         .onHover { isHovering = $0 }
         .contextMenu {

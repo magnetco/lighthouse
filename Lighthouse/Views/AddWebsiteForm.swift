@@ -30,17 +30,17 @@ struct AddWebsiteForm: View {
         } label: {
             HStack(spacing: 10) {
                 Image(systemName: "plus.circle")
-                    .font(.system(size: 11))
+                    .font(.system(size: 12))
                     .foregroundColor(Theme.iconDefault)
                 
                 Text("Add Site")
-                    .font(.system(size: 11, weight: .medium))
+                    .font(.system(size: 12, weight: .medium))
                     .foregroundColor(Theme.textSecondary)
                 
                 Spacer()
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 8)
+            .padding(.horizontal, Theme.panelHorizontalPadding)
+            .padding(.vertical, Theme.rowVerticalPadding)
             .background(Theme.sectionBackground)
             .contentShape(Rectangle())
         }
@@ -162,7 +162,7 @@ struct AddWebsiteForm: View {
                 }
             }
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, Theme.panelHorizontalPadding)
         .padding(.vertical, 8)
         .background(Theme.sectionBackground)
     }
