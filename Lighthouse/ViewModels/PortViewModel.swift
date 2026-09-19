@@ -199,11 +199,19 @@ class PortViewModel: ObservableObject {
         expandedGroups.contains(groupId)
     }
     
-    // Sorted websites with favorites first
+    // Sorted websites with favorites first (flat across profiles; prefer per-profile helper)
     var sortedWebsites: [WebsiteInfo] {
-        var result = websites
+        sortedWebsites(in: websites)
+    }
+    
+    /// Sorted websites for a single environment profile.
+    func sortedWebsites(for profile: EnvironmentProfile) -> [WebsiteInfo] {
+        sortedWebsites(in: profile.websites)
+    }
+    
+    private func sortedWebsites(in list: [WebsiteInfo]) -> [WebsiteInfo] {
+        var result = list
         
-        // Filter by starred if enabled
         if showOnlyStarredWebsites {
             result = result.filter { $0.isStarred }
         }
@@ -212,7 +220,18 @@ class PortViewModel: ObservableObject {
             if lhs.isStarred != rhs.isStarred {
                 return lhs.isStarred
             }
-            return lhs.displayName < rhs.displayName
+            return lhs.displayName.localizedCaseInsensitiveCompare(rhs.displayName) == .orderedAscending
+        }
+    }
+    
+    /// Profiles in Development → Staging → Production order when possible.
+    var orderedProfiles: [EnvironmentProfile] {
+        let preferred = ["Development", "Staging", "Production"]
+        return profiles.sorted { lhs, rhs in
+            let li = preferred.firstIndex(of: lhs.name) ?? preferred.count
+            let ri = preferred.firstIndex(of: rhs.name) ?? preferred.count
+            if li != ri { return li < ri }
+            return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
         }
     }
 
@@ -283,8 +302,9 @@ class PortViewModel: ObservableObject {
                 Task { await self?.refresh() }
             }
         
-        // Start website monitoring with profile-specific interval
-        let interval = activeProfile?.refreshInterval ?? 30.0
+        // Refresh all remote envs on the shortest configured interval among profiles with sites
+        let intervals = profiles.filter { !$0.websites.isEmpty }.map(\.refreshInterval)
+        let interval = intervals.min() ?? activeProfile?.refreshInterval ?? 30.0
         websiteRefreshTimer = Timer.publish(every: interval, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
@@ -348,35 +368,32 @@ class PortViewModel: ObservableObject {
     // MARK: - Website Tracking
     
     func loadWebsites() {
-        // Load profiles
+        // Load profiles from Application Support (or in-memory defaults on first launch)
         profiles = profileStorage.load()
+        ensureStandardProfilesExist()
+        
         activeProfile = profileStorage.getActiveProfile(from: profiles)
         
-        // If no active profile, activate the first one
+        // Prefer Production as the default active profile when none is set
         if activeProfile == nil && !profiles.isEmpty {
-            profiles[0].isActive = true
-            activeProfile = profiles[0]
-            try? profileStorage.save(profiles)
-        }
-        
-        // Load websites from active profile or legacy storage
-        if let profile = activeProfile {
-            websites = profile.websites
-            
-            // Migrate legacy websites to active profile if profile is empty
-            if websites.isEmpty {
-                let legacyWebsites = websiteStorage.load()
-                if !legacyWebsites.isEmpty {
-                    websites = legacyWebsites
-                    saveCurrentProfile()
-                }
+            if let prodIndex = profiles.firstIndex(where: { $0.name == "Production" }) {
+                profiles[prodIndex].isActive = true
+                activeProfile = profiles[prodIndex]
+            } else {
+                profiles[0].isActive = true
+                activeProfile = profiles[0]
             }
-        } else {
-            websites = websiteStorage.load()
         }
         
-        // Add test domain if not already present
-        addTestDomainIfNeeded()
+        // Migrate legacy websites.json into Production (or active) when that profile is empty
+        migrateLegacyWebsitesIfNeeded()
+        
+        // Seed Desk / K&P defaults into empty profiles; merge-by-URL for known seeds on first empty fill
+        seedDefaultSitesIfNeeded()
+        
+        // Persist immediately so remote URLs survive restart (defaults were previously in-memory only)
+        syncWebsitesFromProfiles()
+        saveAllProfiles()
         
         // Initialize previous statuses
         for website in websites {
@@ -400,88 +417,120 @@ class PortViewModel: ObservableObject {
         }
     }
     
-    /// Add test domain (magnet.co) for uptime monitoring if not already present
-    private func addTestDomainIfNeeded() {
-        let testURL = "https://magnet.co"
-        
-        // Check if magnet.co is already being monitored
-        let alreadyExists = websites.contains { website in
-            website.url.lowercased().contains("magnet.co")
+    /// Ensure Development / Staging / Production profiles exist.
+    private func ensureStandardProfilesExist() {
+        let required: [(name: String, icon: String, interval: TimeInterval)] = [
+            ("Development", "hammer.fill", 15),
+            ("Staging", "wrench.and.screwdriver.fill", 30),
+            ("Production", "checkmark.seal.fill", 60),
+        ]
+        for spec in required {
+            guard !profiles.contains(where: { $0.name == spec.name }) else { continue }
+            profiles.append(EnvironmentProfile(
+                name: spec.name,
+                icon: spec.icon,
+                refreshInterval: spec.interval
+            ))
         }
+    }
+    
+    /// Move legacy single-list websites into Production when that profile has no sites yet.
+    private func migrateLegacyWebsitesIfNeeded() {
+        let legacyWebsites = websiteStorage.load()
+        guard !legacyWebsites.isEmpty else { return }
         
-        // Add test domain if not present
-        if !alreadyExists {
-            let testWebsite = WebsiteInfo(
-                url: testURL,
-                displayName: "Magnet (Test Domain)",
-                isInternal: false
-            )
-            websites.append(testWebsite)
-            saveCurrentProfile()
+        guard let prodIndex = profiles.firstIndex(where: { $0.name == "Production" }),
+              profiles[prodIndex].websites.isEmpty else { return }
+        
+        profiles[prodIndex].websites = legacyWebsites
+    }
+    
+    /// Seed Magnet Desk live sites into Production and K&P preview into Staging.
+    /// Only fills empty profiles (merge-by-URL when applying seeds so duplicates are skipped).
+    /// Does not wipe user-added sites on later launches.
+    private func seedDefaultSitesIfNeeded() {
+        for i in profiles.indices {
+            let seeds = EnvironmentProfile.seedSites(forProfileName: profiles[i].name)
+            guard !seeds.isEmpty else { continue }
             
-            // Perform initial ping
-            Task {
-                let result = await websiteMonitor.ping(url: testURL)
-                if let index = websites.firstIndex(where: { $0.url == testURL }) {
-                    websites[index].addPingResult(result)
-                    saveCurrentProfile()
-                }
+            // Only seed when this environment has no sites yet
+            guard profiles[i].websites.isEmpty else { continue }
+            
+            let existingKeys = Set(profiles[i].websites.map { EnvironmentProfile.canonicalURL($0.url) })
+            for seed in seeds {
+                let key = EnvironmentProfile.canonicalURL(seed.url)
+                guard !existingKeys.contains(key) else { continue }
+                profiles[i].websites.append(
+                    WebsiteInfo(url: seed.url, displayName: seed.name, isInternal: false)
+                )
             }
+        }
+    }
+    
+    private func syncWebsitesFromProfiles() {
+        websites = profiles.flatMap(\.websites)
+        if let activeId = activeProfile?.id,
+           let refreshed = profiles.first(where: { $0.id == activeId }) {
+            activeProfile = refreshed
+        }
+    }
+    
+    private func saveAllProfiles() {
+        syncWebsitesFromProfiles()
+        do {
+            try profileStorage.save(profiles)
+        } catch {
+            print("Failed to save profiles: \(error)")
+            // Fallback: persist flat list so remote URLs are not lost
+            try? websiteStorage.save(websites)
         }
     }
     
     func refreshWebsites() async {
-        guard !websites.isEmpty else { return }
+        let allSites = profiles.flatMap(\.websites)
+        guard !allSites.isEmpty else { return }
         
         isLoadingWebsites = true
-        let results = await websiteMonitor.monitorWebsites(websites)
+        let results = await websiteMonitor.monitorWebsites(allSites)
         
-        // Update websites with new ping results and detect status changes
-        for i in websites.indices {
-            if let result = results[websites[i].id] {
-                let oldStatus = websites[i].lastPingStatus
-                websites[i].addPingResult(result)
-                let newStatus = websites[i].lastPingStatus
+        // Update each profile's websites with new ping results
+        for profileIndex in profiles.indices {
+            for siteIndex in profiles[profileIndex].websites.indices {
+                let siteId = profiles[profileIndex].websites[siteIndex].id
+                guard let result = results[siteId] else { continue }
                 
-                // Notify on status change (skip first check)
-                if let old = oldStatus, let new = newStatus, !previousWebsiteStatuses.isEmpty {
-                    if old != new {
-                        notificationManager.notifyWebsiteStatusChange(
-                            website: websites[i].effectiveDisplayName,
-                            oldStatus: old,
-                            newStatus: new
-                        )
-                        
-                        // Send webhooks if enabled for this website
-                        if websites[i].webhooksEnabled {
-                            sendWebhooks(for: websites[i], oldStatus: old, newStatus: new)
-                        }
+                let oldStatus = profiles[profileIndex].websites[siteIndex].lastPingStatus
+                profiles[profileIndex].websites[siteIndex].addPingResult(result)
+                let newStatus = profiles[profileIndex].websites[siteIndex].lastPingStatus
+                
+                if let old = oldStatus, let new = newStatus, !previousWebsiteStatuses.isEmpty, old != new {
+                    let site = profiles[profileIndex].websites[siteIndex]
+                    notificationManager.notifyWebsiteStatusChange(
+                        website: site.effectiveDisplayName,
+                        oldStatus: old,
+                        newStatus: new
+                    )
+                    
+                    if site.webhooksEnabled {
+                        sendWebhooks(for: site, oldStatus: old, newStatus: new)
                     }
                 }
                 
-                // Track status
                 if let status = newStatus {
-                    previousWebsiteStatuses[websites[i].id] = status
+                    previousWebsiteStatuses[siteId] = status
                 }
             }
         }
         
-        // Save updated websites
-        saveCurrentProfile()
+        saveAllProfiles()
         isLoadingWebsites = false
         updateSystemHealth()
     }
     
-    func addWebsite(url: String, name: String, isInternal: Bool? = nil, framework: String? = nil) async {
-        // Normalize URL
+    func addWebsite(url: String, name: String, isInternal: Bool? = nil, framework: String? = nil, toProfileId: UUID? = nil) async {
         let normalizedURL = WebsiteMonitor.normalizeURL(url)
+        guard WebsiteMonitor.isValidURL(normalizedURL) else { return }
         
-        // Validate URL
-        guard WebsiteMonitor.isValidURL(normalizedURL) else {
-            return
-        }
-        
-        // Create new website
         var website = WebsiteInfo(
             url: normalizedURL,
             displayName: name.isEmpty ? "" : name,
@@ -489,72 +538,70 @@ class PortViewModel: ObservableObject {
             detectedFramework: framework
         )
         
-        // Perform initial ping
         let result = await websiteMonitor.ping(url: normalizedURL)
         website.addPingResult(result)
         
-        // Add to list
-        websites.append(website)
+        let targetId = toProfileId
+            ?? activeProfile?.id
+            ?? profiles.first(where: { $0.name == "Production" })?.id
+            ?? profiles.first?.id
         
-        // Save to storage
-        saveCurrentProfile()
+        guard let targetId,
+              let profileIndex = profiles.firstIndex(where: { $0.id == targetId }) else {
+            return
+        }
         
+        profiles[profileIndex].websites.append(website)
+        saveAllProfiles()
         isAddingWebsite = false
     }
     
     func removeWebsite(id: UUID) {
-        websites.removeAll { $0.id == id }
-        saveCurrentProfile()
+        for i in profiles.indices {
+            profiles[i].websites.removeAll { $0.id == id }
+        }
+        saveAllProfiles()
     }
     
     func updateWebsite(_ website: WebsiteInfo) {
-        if let index = websites.firstIndex(where: { $0.id == website.id }) {
-            websites[index] = website
-            saveCurrentProfile()
+        for i in profiles.indices {
+            if let index = profiles[i].websites.firstIndex(where: { $0.id == website.id }) {
+                profiles[i].websites[index] = website
+                saveAllProfiles()
+                return
+            }
         }
     }
     
     private func saveCurrentProfile() {
-        if let profileIndex = profiles.firstIndex(where: { $0.id == activeProfile?.id }) {
-            profiles[profileIndex].websites = websites
-            try? profileStorage.save(profiles)
-        } else {
-            // Fallback to legacy storage
-            try? websiteStorage.save(websites)
-        }
+        // Keep name for call sites; persist all profiles (multi-env source of truth)
+        saveAllProfiles()
     }
     
     func toggleWebsiteMonitoring(id: UUID) {
-        if let index = websites.firstIndex(where: { $0.id == id }) {
-            websites[index].isEnabled.toggle()
-            saveCurrentProfile()
+        for i in profiles.indices {
+            if let index = profiles[i].websites.firstIndex(where: { $0.id == id }) {
+                profiles[i].websites[index].isEnabled.toggle()
+                saveAllProfiles()
+                return
+            }
         }
     }
     
     // MARK: - Profile Management
     
     func switchProfile(to profile: EnvironmentProfile) {
-        // Deactivate current profile
+        // Kept for compatibility; UI now shows all envs at once.
+        // Still tracks active profile as the default Add-Site target.
         if let currentIndex = profiles.firstIndex(where: { $0.isActive }) {
             profiles[currentIndex].isActive = false
         }
         
-        // Activate new profile
         if let newIndex = profiles.firstIndex(where: { $0.id == profile.id }) {
             profiles[newIndex].isActive = true
             activeProfile = profiles[newIndex]
-            websites = profiles[newIndex].websites
-            
-            // Save profiles
-            try? profileStorage.save(profiles)
-            
-            // Restart timers with new interval
+            saveAllProfiles()
             startAutoRefresh()
-            
-            // Refresh websites immediately
-            Task {
-                await refreshWebsites()
-            }
         }
     }
     
@@ -565,13 +612,12 @@ class PortViewModel: ObservableObject {
             refreshInterval: refreshInterval
         )
         profiles.append(profile)
-        try? profileStorage.save(profiles)
+        saveAllProfiles()
     }
     
     func deleteProfile(id: UUID) {
         guard profiles.count > 1 else { return } // Keep at least one profile
         
-        // If deleting active profile, switch to another first
         if activeProfile?.id == id {
             if let nextProfile = profiles.first(where: { $0.id != id }) {
                 switchProfile(to: nextProfile)
@@ -579,7 +625,7 @@ class PortViewModel: ObservableObject {
         }
         
         profiles.removeAll { $0.id == id }
-        try? profileStorage.save(profiles)
+        saveAllProfiles()
     }
     
     // MARK: - Docker Management
@@ -656,8 +702,10 @@ class PortViewModel: ObservableObject {
         var hasCritical = false
         var hasWarning = false
         
-        // Check websites for issues
-        for website in websites where website.isEnabled {
+        let allSites = profiles.flatMap(\.websites)
+        
+        // Check websites for issues across all environments
+        for website in allSites where website.isEnabled {
             if let status = website.lastPingStatus {
                 switch status {
                 case .error:
@@ -675,7 +723,7 @@ class PortViewModel: ObservableObject {
             systemHealth = .critical
         } else if hasWarning {
             systemHealth = .warning
-        } else if !websites.isEmpty || !ports.isEmpty {
+        } else if !allSites.isEmpty || !ports.isEmpty {
             systemHealth = .healthy
         } else {
             systemHealth = .unknown
@@ -693,9 +741,12 @@ class PortViewModel: ObservableObject {
     }
     
     func toggleWebsiteStar(_ website: WebsiteInfo) {
-        if let index = websites.firstIndex(where: { $0.id == website.id }) {
-            websites[index].isStarred.toggle()
-            saveCurrentProfile()
+        for i in profiles.indices {
+            if let index = profiles[i].websites.firstIndex(where: { $0.id == website.id }) {
+                profiles[i].websites[index].isStarred.toggle()
+                saveAllProfiles()
+                return
+            }
         }
     }
     

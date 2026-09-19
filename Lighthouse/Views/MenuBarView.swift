@@ -5,6 +5,7 @@ struct MenuBarView: View {
     @ObservedObject private var pinController = PanelPinController.shared
     @State private var isAddingWebsite = false
     @State private var showingProjectMappings = false
+    @State private var addTargetProfileId: UUID?
 
     var body: some View {
         VStack(spacing: 0) {
@@ -49,15 +50,10 @@ struct MenuBarView: View {
                 groupedPortList
             }
 
-            // Nautical Separator
+            // Nautical Separator + REMOTE (all envs at once)
             nauticalSeparator
             
-            // Profile Switcher
-            if !viewModel.profiles.isEmpty {
-                profileSwitcher
-            }
-            
-            // Distant Ports Section
+            // Distant Ports Section — Development / Staging / Production
             distantPortsSection
             
             // Docker Section
@@ -114,6 +110,11 @@ struct MenuBarView: View {
         .background(Theme.windowBackground)
         .onAppear {
             viewModel.loadWebsites()
+            if addTargetProfileId == nil {
+                addTargetProfileId = viewModel.profiles.first(where: { $0.name == "Production" })?.id
+                    ?? viewModel.activeProfile?.id
+                    ?? viewModel.profiles.first?.id
+            }
             viewModel.startAutoRefresh()
             Task {
                 await viewModel.refresh()
@@ -191,75 +192,149 @@ struct MenuBarView: View {
         }
     }
     
-    private var profileSwitcher: some View {
+    private var distantPortsSection: some View {
+        VStack(spacing: 0) {
+            if viewModel.orderedProfiles.isEmpty {
+                distantPortsEmptyView
+            } else {
+                ScrollView {
+                    LazyVStack(spacing: 0, pinnedViews: []) {
+                        ForEach(viewModel.orderedProfiles) { profile in
+                            environmentSection(for: profile)
+                        }
+                    }
+                }
+                .frame(maxHeight: 440)
+            }
+            
+            addSiteTargetPicker
+            
+            AddWebsiteForm(isExpanded: $isAddingWebsite) { url, name, isInternal, framework in
+                await viewModel.addWebsite(
+                    url: url,
+                    name: name,
+                    isInternal: isInternal,
+                    framework: framework,
+                    toProfileId: addTargetProfileId
+                )
+            }
+        }
+    }
+    
+    private var addSiteTargetPicker: some View {
         HStack(spacing: 8) {
-            Image(systemName: "map.fill")
-                .font(.system(size: 11))
-                .foregroundColor(Theme.iconDefault)
+            Text("Add to")
+                .font(.system(size: 10))
+                .foregroundColor(Theme.textMuted)
             
             Menu {
-                ForEach(viewModel.profiles) { profile in
+                ForEach(viewModel.orderedProfiles) { profile in
                     Button {
+                        addTargetProfileId = profile.id
                         viewModel.switchProfile(to: profile)
                     } label: {
                         HStack {
                             Image(systemName: profile.icon)
                             Text(profile.name)
-                            if profile.id == viewModel.activeProfile?.id {
+                            if profile.id == addTargetProfileId {
                                 Image(systemName: "checkmark")
                             }
                         }
                     }
                 }
             } label: {
-                HStack(spacing: 6) {
-                    if let active = viewModel.activeProfile {
-                        Image(systemName: active.icon)
-                            .font(.system(size: 11))
-                        Text(active.name)
-                            .font(.system(size: 12, weight: .medium))
+                HStack(spacing: 4) {
+                    if let profile = viewModel.orderedProfiles.first(where: { $0.id == addTargetProfileId }) {
+                        Image(systemName: profile.icon)
+                            .font(.system(size: 9))
+                        Text(profile.name)
+                            .font(.system(size: 11, weight: .medium))
                     } else {
-                        Text("Select Profile")
-                            .font(.system(size: 12, weight: .medium))
+                        Text("Production")
+                            .font(.system(size: 11, weight: .medium))
                     }
                     Image(systemName: "chevron.down")
                         .font(.system(size: 8))
                 }
-                .foregroundColor(Theme.textPrimary)
+                .foregroundColor(Theme.textSecondary)
             }
             .buttonStyle(.plain)
             
             Spacer()
-            
-            if let interval = viewModel.activeProfile?.refreshInterval {
-                HStack(spacing: 3) {
-                    Image(systemName: "clock")
-                        .font(.system(size: 9))
-                        .foregroundColor(Theme.textMuted)
-                    Text("\(Int(interval))s")
-                        .font(.system(size: 10))
-                        .foregroundColor(Theme.textMuted)
-                }
-                .help("Refresh interval")
-            }
         }
         .padding(.horizontal, Theme.panelHorizontalPadding)
-        .padding(.vertical, 10)
+        .padding(.top, 8)
+        .padding(.bottom, 2)
         .background(Theme.sectionBackground)
     }
     
-    private var distantPortsSection: some View {
-        VStack(spacing: 0) {
-            if viewModel.websites.isEmpty {
-                distantPortsEmptyView
+    private func environmentSection(for profile: EnvironmentProfile) -> some View {
+        let sites = viewModel.sortedWebsites(for: profile)
+        
+        return VStack(spacing: 0) {
+            HStack(spacing: 8) {
+                Image(systemName: profile.icon)
+                    .font(.system(size: 10))
+                    .foregroundColor(Theme.iconDefault)
+                
+                Text(profile.name.uppercased())
+                    .font(.system(size: 10, weight: .semibold))
+                    .foregroundColor(Theme.textSecondary)
+                    .tracking(0.4)
+                
+                Text("\(sites.count)")
+                    .font(.system(size: 9, design: .monospaced))
+                    .foregroundColor(Theme.textMuted)
+                
+                Spacer()
+                
+                HStack(spacing: 3) {
+                    Image(systemName: "clock")
+                        .font(.system(size: 8))
+                        .foregroundColor(Theme.textMuted)
+                    Text("\(Int(profile.refreshInterval))s")
+                        .font(.system(size: 9))
+                        .foregroundColor(Theme.textMuted)
+                }
+                .help("Refresh interval for this environment")
+            }
+            .padding(.horizontal, Theme.panelHorizontalPadding)
+            .padding(.vertical, 7)
+            .background(Theme.sectionBackground)
+            
+            SolidDivider()
+            
+            if sites.isEmpty {
+                HStack {
+                    Text("No sites")
+                        .font(.system(size: 11))
+                        .foregroundColor(Theme.textTertiary)
+                    Spacer()
+                }
+                .padding(.horizontal, Theme.panelHorizontalPadding)
+                .padding(.vertical, 10)
             } else {
-                distantPortsList
+                ForEach(sites) { website in
+                    WebsiteRowView(
+                        website: website,
+                        onOpen: { viewModel.openWebsite(website) },
+                        onCopy: { viewModel.copyWebsiteURL(website) },
+                        onRemove: { viewModel.removeWebsite(id: website.id) },
+                        onSave: { newName in
+                            var updated = website
+                            updated.displayName = newName
+                            viewModel.updateWebsite(updated)
+                        },
+                        onToggleStar: { viewModel.toggleWebsiteStar(website) }
+                    )
+                    
+                    if website.id != sites.last?.id {
+                        SolidDivider()
+                    }
+                }
             }
             
-            // Add website form
-            AddWebsiteForm(isExpanded: $isAddingWebsite) { url, name, isInternal, framework in
-                await viewModel.addWebsite(url: url, name: name, isInternal: isInternal, framework: framework)
-            }
+            SolidDivider()
         }
     }
     
@@ -279,29 +354,6 @@ struct MenuBarView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 16)
-    }
-    
-    private var distantPortsList: some View {
-        LazyVStack(spacing: 0) {
-            ForEach(viewModel.sortedWebsites) { website in
-                WebsiteRowView(
-                    website: website,
-                    onOpen: { viewModel.openWebsite(website) },
-                    onCopy: { viewModel.copyWebsiteURL(website) },
-                    onRemove: { viewModel.removeWebsite(id: website.id) },
-                    onSave: { newName in
-                        var updated = website
-                        updated.displayName = newName
-                        viewModel.updateWebsite(updated)
-                    },
-                    onToggleStar: { viewModel.toggleWebsiteStar(website) }
-                )
-                
-                if website.id != viewModel.sortedWebsites.last?.id {
-                    SolidDivider()
-                }
-            }
-        }
     }
     
     private var dockerSection: some View {
